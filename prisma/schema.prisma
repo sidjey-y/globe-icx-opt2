@@ -20,9 +20,11 @@ model Answer {
   questionIndex Int
   questionText  String
   answerText    String
+  userEmail     String   // Globe email (e.g. carla.haboc@globe.com.ph)
   createdAt     DateTime @default(now())
 
   @@index([createdAt])
   @@index([questionIndex])
+  @@index([userEmail])
 }
 

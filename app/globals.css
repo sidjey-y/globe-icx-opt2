@@ -24,3 +24,57 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Landing page refinements */
+.landing-nav-link {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.landing-nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+/* Transparent navbar: dark text on light background */
+.landing-nav-link-transparent {
+  color: #1f2e8d !important;
+}
+.landing-nav-link-transparent:hover {
+  color: #1f2e8d !important;
+  background: rgba(31, 46, 141, 0.08) !important;
+}
+.landing-logo-link:hover {
+  opacity: 0.9;
+}
+.landing-logo-link {
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: opacity 0.2s ease;
+}
+.landing-outline-btn {
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.landing-outline-btn:hover {
+  background: rgba(31, 46, 141, 0.06) !important;
+  transform: translateY(-1px);
+}
+.landing-next-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.landing-next-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(31, 46, 141, 0.45);
+  background: #1929a0 !important;
+}
+.landing-play-btn {
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.landing-play-btn:hover {
+  transform: scale(1.08);
+  background: #fff !important;
+}
