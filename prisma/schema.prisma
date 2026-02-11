@@ -20,11 +20,9 @@ model Answer {
   questionIndex Int
   questionText  String
   answerText    String
-  groupId       Int
   createdAt     DateTime @default(now())
 
   @@index([createdAt])
-  @@index([groupId])
   @@index([questionIndex])
 }
 

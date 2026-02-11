@@ -9,13 +9,11 @@ export async function POST(req: Request) {
     const questionIndex = Number(body?.questionIndex);
     const questionText = String(body?.questionText ?? "").trim();
     const answerText = String(body?.answerText ?? "").trim();
-    const groupId = Number(body?.groupId);
 
     if (!seed) return NextResponse.json({ error: "Missing seed" }, { status: 400 });
     if (!Number.isFinite(questionIndex)) return NextResponse.json({ error: "Invalid questionIndex" }, { status: 400 });
     if (!questionText) return NextResponse.json({ error: "Missing questionText" }, { status: 400 });
     if (!answerText) return NextResponse.json({ error: "Missing answerText" }, { status: 400 });
-    if (!Number.isFinite(groupId) || groupId <= 0) return NextResponse.json({ error: "Invalid groupId" }, { status: 400 });
 
     if (answerText.length > 200) {
       return NextResponse.json({ error: "Answer too long" }, { status: 400 });
@@ -27,7 +25,6 @@ export async function POST(req: Request) {
         questionIndex,
         questionText,
         answerText,
-        groupId,
       },
       select: { id: true, createdAt: true },
     });
