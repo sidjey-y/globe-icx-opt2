@@ -28,7 +28,7 @@ export default function FAQsPage() {
             width: "100%",
             maxWidth: 1200,
             margin: "0 auto",
-            padding: "14px 24px",
+            padding: "8px 24px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -39,8 +39,8 @@ export default function FAQsPage() {
             <Image
               src="/images/icx-logo.png"
               alt="iCX - Internal Customer Experience"
-              width={120}
-              height={40}
+              width={100}
+              height={32}
               style={{ objectFit: "contain" }}
               priority
             />
