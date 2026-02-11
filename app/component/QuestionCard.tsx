@@ -31,13 +31,8 @@ export default function QuestionCard() {
 
   useEffect(() => {
     setMounted(true);
-    const key = "qs_seed";
-    let existing = sessionStorage.getItem(key);
-    if (!existing) {
-      existing = crypto.randomUUID();
-      sessionStorage.setItem(key, existing);
-    }
-    setSeed(existing);
+    // New seed on every load so the question changes on refresh
+    setSeed(crypto.randomUUID());
   }, []);
 
   const questionIndex = useMemo(() => {
