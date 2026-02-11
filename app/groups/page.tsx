@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ResponsiveStage from "../component/ResponsiveStage";
 
 // 1. Data Mapping with Real Groups
 const GROUPS_BY_CLASSIFICATION = {
@@ -191,18 +192,19 @@ export default function GroupsPage() {
     const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
 
     return (
-        <div
-            style={{
-                position: "relative",
-                width: "1512px",
-                height: "1948px",
-                background: "#FFFFFF",
-                margin: "0 auto",
-                overflow: "hidden",
-            }}
-        >
-            {/* Premium Interactions & Scrollbar Hiding */}
-            <style jsx global>{`
+        <ResponsiveStage designWidth={1512} designHeight={1948}>
+            <div
+                style={{
+                    position: "relative",
+                    width: "1512px",
+                    height: "1948px",
+                    background: "#FFFFFF",
+                    margin: "0 auto",
+                    overflow: "hidden",
+                }}
+            >
+                {/* Premium Interactions & Scrollbar Hiding */}
+                <style jsx global>{`
         .no-scrollbar::-webkit-scrollbar {
           display: none;
         }
@@ -256,211 +258,212 @@ export default function GroupsPage() {
         }
       `}</style>
 
-            {/* ICX logo 1 - Wired to Landing Page */}
-            <Link
-                href="/landing-page"
-                style={{
-                    position: "absolute",
-                    width: "174px",
-                    height: "174px",
-                    left: "12px",
-                    top: "-12px",
-                    zIndex: 10,
-                }}
-            >
-                <Image src="/images/icx-logo.png" alt="iCX Logo" fill style={{ objectFit: "contain" }} />
-            </Link>
-
-            {/* Nav Links */}
-            <div style={{ position: "absolute", width: "100%", height: "100px", zIndex: 10 }}>
+                {/* ICX logo 1 - Wired to Landing Page */}
                 <Link
                     href="/landing-page"
                     style={{
                         position: "absolute",
-                        width: "98px",
-                        height: "52px",
-                        left: "1041px",
-                        top: "49px",
-                        fontFamily: "'Poppins', sans-serif",
-                        fontWeight: 400,
-                        fontSize: "33px",
-                        lineHeight: "50px",
-                        textAlign: "center",
-                        color: "#29348F",
-                        textDecoration: "none",
+                        width: "120px",
+                        height: "120px",
+                        left: "24px",
+                        top: "15px",
+                        zIndex: 10,
                     }}
                 >
-                    iCX
+                    <Image src="/images/icx-logo.png" alt="iCX Logo" fill style={{ objectFit: "contain" }} />
                 </Link>
-                <Link
-                    href="/groups"
+
+                {/* Header / Nav Container */}
+                <div style={{ width: "100%", maxWidth: "1512px", position: "relative", height: "140px" }}>
+                    <Link
+                        href="/landing-page"
+                        style={{
+                            position: "absolute",
+                            width: "80px",
+                            height: "40px",
+                            left: "1080px",
+                            top: "55px",
+                            fontFamily: "'Poppins', sans-serif",
+                            fontWeight: 400,
+                            fontSize: "24px",
+                            lineHeight: "36px",
+                            textAlign: "center",
+                            color: "#29348F",
+                            textDecoration: "none",
+                        }}
+                    >
+                        iCX
+                    </Link>
+                    <Link
+                        href="/groups"
+                        style={{
+                            position: "absolute",
+                            width: "120px",
+                            height: "40px",
+                            left: "1180px",
+                            top: "55px",
+                            fontFamily: "'Poppins', sans-serif",
+                            fontWeight: 400,
+                            fontSize: "24px",
+                            lineHeight: "36px",
+                            textAlign: "center",
+                            color: "#29348F",
+                            textDecoration: "none",
+                        }}
+                    >
+                        Groups
+                    </Link>
+                    <Link
+                        href="/faqs"
+                        style={{
+                            position: "absolute",
+                            width: "120px",
+                            height: "40px",
+                            left: "1320px",
+                            top: "55px",
+                            fontFamily: "'Poppins', sans-serif",
+                            fontWeight: 400,
+                            fontSize: "24px",
+                            lineHeight: "36px",
+                            textAlign: "center",
+                            color: "#29348F",
+                            textDecoration: "none",
+                        }}
+                    >
+                        FAQs
+                    </Link>
+                </div>
+
+                {/* Lorem Ipsum Title */}
+                <div
                     style={{
                         position: "absolute",
-                        width: "158px",
-                        height: "52px",
-                        left: "1159px",
-                        top: "49px",
+                        width: "968px",
+                        height: "60px",
+                        left: "272px",
+                        top: "162px",
                         fontFamily: "'Poppins', sans-serif",
-                        fontWeight: 400,
-                        fontSize: "33px",
-                        lineHeight: "50px",
+                        fontWeight: 700,
+                        fontSize: "50px",
+                        lineHeight: "75px",
                         textAlign: "center",
-                        color: "#29348F",
-                        textDecoration: "none",
+                        color: "#1F2E8D",
                     }}
                 >
-                    Groups
-                </Link>
-                <Link
-                    href="/faqs"
+                    Lorem Ipsum
+                </div>
+
+                {/* Rectangle 8 (Grey Banner) */}
+                <div
                     style={{
                         position: "absolute",
-                        width: "158px",
-                        height: "52px",
-                        left: "1327px",
-                        top: "49px",
+                        width: "1277px",
+                        height: "286px",
+                        left: "99px",
+                        top: "283px",
+                        background: "#D9D9D9",
+                        borderRadius: "10px",
+                    }}
+                />
+
+                {/* We’d like to know you... */}
+                <div
+                    style={{
+                        position: "absolute",
+                        width: "968px",
+                        height: "60px",
+                        left: "272px",
+                        top: "379px",
                         fontFamily: "'Poppins', sans-serif",
-                        fontWeight: 400,
-                        fontSize: "33px",
-                        lineHeight: "50px",
+                        fontWeight: 700,
+                        fontSize: "50px",
+                        lineHeight: "75px",
                         textAlign: "center",
-                        color: "#29348F",
-                        textDecoration: "none",
+                        color: "#1F2E8D",
+                        zIndex: 5,
                     }}
                 >
-                    FAQs
-                </Link>
-            </div>
-
-            {/* Lorem Ipsum Title */}
-            <div
-                style={{
-                    position: "absolute",
-                    width: "968px",
-                    height: "60px",
-                    left: "272px",
-                    top: "162px",
-                    fontFamily: "'Poppins', sans-serif",
-                    fontWeight: 700,
-                    fontSize: "50px",
-                    lineHeight: "75px",
-                    textAlign: "center",
-                    color: "#1F2E8D",
-                }}
-            >
-                Lorem Ipsum
-            </div>
-
-            {/* Rectangle 8 (Grey Banner) */}
-            <div
-                style={{
-                    position: "absolute",
-                    width: "1277px",
-                    height: "286px",
-                    left: "99px",
-                    top: "283px",
-                    background: "#D9D9D9",
-                    borderRadius: "10px",
-                }}
-            />
-
-            {/* We’d like to know you... */}
-            <div
-                style={{
-                    position: "absolute",
-                    width: "968px",
-                    height: "60px",
-                    left: "272px",
-                    top: "379px",
-                    fontFamily: "'Poppins', sans-serif",
-                    fontWeight: 700,
-                    fontSize: "50px",
-                    lineHeight: "75px",
-                    textAlign: "center",
-                    color: "#1F2E8D",
-                    zIndex: 5,
-                }}
-            >
-                We’d like to know you...
-            </div>
-
-            {/* Sections Rendering */}
-
-            {/* 1. Commercial Teams */}
-            <div
-                style={{
-                    position: "absolute",
-                    width: "1512px",
-                    height: "67px",
-                    left: "0px",
-                    top: "634px",
-                    background: "linear-gradient(90deg, #29348F 0%, #00A0EA 51.45%, #29348F 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "30px", color: "#FFFFFF" }}>
-                    Commercial Teams
+                    We’d like to know you...
                 </div>
-            </div>
-            <ScrollingRow
-                groups={GROUPS_BY_CLASSIFICATION["Commercial Teams"]}
-                top={789}
-                selectedGroup={selectedGroup}
-                onGroupSelect={setSelectedGroup}
-            />
 
-            {/* 2. Business Enabling */}
-            <div
-                style={{
-                    position: "absolute",
-                    width: "1512px",
-                    height: "67px",
-                    left: "0px",
-                    top: "1045px",
-                    background: "linear-gradient(90deg, #29348F 0%, #00A0EA 51.45%, #29348F 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "30px", color: "#FFFFFF" }}>
-                    Business Enabling
+                {/* Sections Rendering */}
+
+                {/* 1. Commercial Teams */}
+                <div
+                    style={{
+                        position: "absolute",
+                        width: "1512px",
+                        height: "67px",
+                        left: "0px",
+                        top: "634px",
+                        background: "linear-gradient(90deg, #29348F 0%, #00A0EA 51.45%, #29348F 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "30px", color: "#FFFFFF" }}>
+                        Commercial Teams
+                    </div>
                 </div>
-            </div>
-            <ScrollingRow
-                groups={GROUPS_BY_CLASSIFICATION["Business Enabling"]}
-                top={1205}
-                selectedGroup={selectedGroup}
-                onGroupSelect={setSelectedGroup}
-            />
+                <ScrollingRow
+                    groups={GROUPS_BY_CLASSIFICATION["Commercial Teams"]}
+                    top={789}
+                    selectedGroup={selectedGroup}
+                    onGroupSelect={setSelectedGroup}
+                />
 
-            {/* 3. XDT */}
-            <div
-                style={{
-                    position: "absolute",
-                    width: "1512px",
-                    height: "67px",
-                    left: "0px",
-                    top: "1455px",
-                    background: "linear-gradient(90deg, #29348F 0%, #00A0EA 51.45%, #29348F 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "30px", color: "#FFFFFF" }}>
-                    Experience Delivery & Transformation (XDT)
+                {/* 2. Business Enabling */}
+                <div
+                    style={{
+                        position: "absolute",
+                        width: "1512px",
+                        height: "67px",
+                        left: "0px",
+                        top: "1045px",
+                        background: "linear-gradient(90deg, #29348F 0%, #00A0EA 51.45%, #29348F 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "30px", color: "#FFFFFF" }}>
+                        Business Enabling
+                    </div>
                 </div>
-            </div>
-            <ScrollingRow
-                groups={GROUPS_BY_CLASSIFICATION["XDT"]}
-                top={1615}
-                selectedGroup={selectedGroup}
-                onGroupSelect={setSelectedGroup}
-            />
+                <ScrollingRow
+                    groups={GROUPS_BY_CLASSIFICATION["Business Enabling"]}
+                    top={1205}
+                    selectedGroup={selectedGroup}
+                    onGroupSelect={setSelectedGroup}
+                />
 
-        </div>
+                {/* 3. XDT */}
+                <div
+                    style={{
+                        position: "absolute",
+                        width: "1512px",
+                        height: "67px",
+                        left: "0px",
+                        top: "1455px",
+                        background: "linear-gradient(90deg, #29348F 0%, #00A0EA 51.45%, #29348F 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "30px", color: "#FFFFFF" }}>
+                        Experience Delivery & Transformation (XDT)
+                    </div>
+                </div>
+                <ScrollingRow
+                    groups={GROUPS_BY_CLASSIFICATION["XDT"]}
+                    top={1615}
+                    selectedGroup={selectedGroup}
+                    onGroupSelect={setSelectedGroup}
+                />
+
+            </div>
+        </ResponsiveStage>
     );
 }
