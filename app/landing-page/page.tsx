@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LandingSurveyBlock from "@/app/component/LandingSurveyBlock";
@@ -9,6 +9,7 @@ import ResponsiveStage from "../component/ResponsiveStage";
 
 export default function LandingPage() {
   const videoSectionRef = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const scrollToVideo = () => {
     videoSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -133,6 +134,9 @@ export default function LandingPage() {
               left: "152px",
               top: "-103px",
               zIndex: 1,
+              filter: isFocused ? 'drop-shadow(0 0 20px rgba(0, 160, 234, 0.5))' : 'none',
+              transform: isFocused ? 'scale(1.01)' : 'scale(1)',
+              transition: 'filter 0.3s ease, transform 0.3s ease',
             }}
           >
             <Image
@@ -150,7 +154,7 @@ export default function LandingPage() {
               width: "887px",
               height: "624px",
               left: "-101px",
-              top: "338px",
+              top: "348px",
               zIndex: 2,
             }}
           >
@@ -190,6 +194,8 @@ export default function LandingPage() {
           {/* Chatbox / Survey Container */}
           <div
             className="icxCardShell"
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             style={{
               position: "absolute",
               width: "920px",
@@ -290,65 +296,6 @@ export default function LandingPage() {
             />
           </div>
 
-          {/* Bottom Buttons */}
-          <Link
-            href="/faqs"
-            className="icxSecondaryButton"
-            style={{
-              position: "absolute",
-              width: "375px",
-              height: "52px",
-              left: "240px",
-              top: "1767px",
-              background: "#FFFFFF",
-              border: "2px solid #1F2E8D",
-              borderRadius: "30px",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textDecoration: "none"
-            }}
-          >
-            <span style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 400,
-              fontSize: "30px",
-              lineHeight: "45px",
-              color: "#1F2E8D",
-            }}>
-              Know more about iCX
-            </span>
-          </Link>
-
-          <Link
-            href="/groups"
-            className="icxNextButton"
-            style={{
-              position: "absolute",
-              width: "375px",
-              height: "52px",
-              left: "896px",
-              top: "1767px",
-              background: "#3D59B7",
-              borderRadius: "30px",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textDecoration: "none"
-            }}
-          >
-            <span style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 400,
-              fontSize: "30px",
-              lineHeight: "45px",
-              color: "#FFFFFF",
-            }}>
-              Start my iCX journey
-            </span>
-          </Link>
 
         </div>
       </div>
