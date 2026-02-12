@@ -103,7 +103,7 @@ export default function LandingPage() {
           position: "relative",
           width: "1512px", // Fixed width
           height: "1948px", // Fixed height
-          background: "#FFFFFF",
+          background: "#C8ECFF",
           margin: "0 auto",
           overflow: "hidden",
         }}
@@ -173,7 +173,7 @@ export default function LandingPage() {
               width: "563px",
               height: "60px",
               left: "618px",
-              top: "162px",
+              top: "152px",
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 700,
               fontSize: "64px",
@@ -185,81 +185,7 @@ export default function LandingPage() {
             Hi, Ka-Globe!
           </div>
 
-          {/* Nav / Logo */}
-          <div
-            style={{
-              position: "absolute",
-              width: "120px",
-              height: "120px",
-              left: "24px",
-              top: "15px",
-            }}
-          >
-            <Image
-              src="/images/icx-logo.png"
-              alt="iCX Logo"
-              fill
-              style={{ objectFit: "contain" }}
-            />
-          </div>
 
-          <Link
-            href="/landing-page"
-            style={{
-              position: "absolute",
-              width: "80px",
-              height: "40px",
-              left: "1080px",
-              top: "55px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
-              textAlign: "center",
-              color: "#29348F",
-              textDecoration: "none",
-            }}
-          >
-            iCX
-          </Link>
-          <Link
-            href="/groups"
-            style={{
-              position: "absolute",
-              width: "120px",
-              height: "40px",
-              left: "1180px",
-              top: "55px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
-              textAlign: "center",
-              color: "#29348F",
-              textDecoration: "none",
-            }}
-          >
-            Groups
-          </Link>
-          <Link
-            href="/faqs"
-            style={{
-              position: "absolute",
-              width: "120px",
-              height: "40px",
-              left: "1320px",
-              top: "55px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
-              textAlign: "center",
-              color: "#29348F",
-              textDecoration: "none",
-            }}
-          >
-            FAQs
-          </Link>
 
           {/* Chatbox / Survey Container */}
           <div
@@ -269,7 +195,7 @@ export default function LandingPage() {
               width: "920px",
               height: "380px",
               left: "440px",
-              top: "310px",
+              top: "295px",
             }}
           >
             <LandingSurveyBlock />
@@ -284,7 +210,7 @@ export default function LandingPage() {
               width: "196px",
               height: "52px",
               left: "802px",
-              top: "730px",
+              top: "715px",
               background: "#3D59B7",
               borderRadius: "30px",
               display: "flex",

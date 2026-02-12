@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import ResponsiveStage from "../component/ResponsiveStage";
 
@@ -21,95 +20,7 @@ export default function FAQsPage() {
         }}
       >
         {/* Header matching landing page — fixed sizes */}
-        <header
-          style={{
-            position: "relative",
-            width: "1512px",
-            height: "120px",
-            margin: "0 auto",
-            background: "transparent",
-            zIndex: 10,
-          }}
-        >
-          {/* Logo */}
-          <div
-            style={{
-              position: "absolute",
-              width: "120px",
-              height: "120px",
-              left: "24px",
-              top: "15px",
-            }}
-          >
-            <Link href="/landing-page">
-              <Image
-                src="/images/icx-logo.png"
-                alt="iCX Logo"
-                fill
-                style={{ objectFit: "contain" }}
-              />
-            </Link>
-          </div>
 
-          {/* Nav Links */}
-          <Link
-            href="/landing-page"
-            style={{
-              position: "absolute",
-              width: "80px",
-              height: "40px",
-              left: "1080px",
-              top: "55px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
-              textAlign: "center",
-              color: "#29348F",
-              textDecoration: "none",
-            }}
-          >
-            iCX
-          </Link>
-          <Link
-            href="/groups"
-            style={{
-              position: "absolute",
-              width: "120px",
-              height: "40px",
-              left: "1180px",
-              top: "55px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
-              textAlign: "center",
-              color: "#29348F",
-              textDecoration: "none",
-            }}
-          >
-            Groups
-          </Link>
-          <Link
-            href="/faqs"
-            style={{
-              position: "absolute",
-              width: "120px",
-              height: "40px",
-              left: "1320px",
-              top: "55px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
-              textAlign: "center",
-              color: "#29348F",
-              textDecoration: "none",
-            }}
-          >
-            FAQs
-          </Link>
-        </header>
 
         <main
           style={{

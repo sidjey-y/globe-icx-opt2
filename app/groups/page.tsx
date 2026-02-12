@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import ResponsiveStage from "../component/ResponsiveStage";
 
 // 1. Data Mapping with Real Groups
@@ -258,81 +256,7 @@ export default function GroupsPage() {
         }
       `}</style>
 
-                {/* ICX logo 1 - Wired to Landing Page */}
-                <Link
-                    href="/landing-page"
-                    style={{
-                        position: "absolute",
-                        width: "120px",
-                        height: "120px",
-                        left: "24px",
-                        top: "15px",
-                        zIndex: 10,
-                    }}
-                >
-                    <Image src="/images/icx-logo.png" alt="iCX Logo" fill style={{ objectFit: "contain" }} />
-                </Link>
 
-                {/* Header / Nav Container */}
-                <div style={{ width: "100%", maxWidth: "1512px", position: "relative", height: "140px" }}>
-                    <Link
-                        href="/landing-page"
-                        style={{
-                            position: "absolute",
-                            width: "80px",
-                            height: "40px",
-                            left: "1080px",
-                            top: "55px",
-                            fontFamily: "'Poppins', sans-serif",
-                            fontWeight: 400,
-                            fontSize: "24px",
-                            lineHeight: "36px",
-                            textAlign: "center",
-                            color: "#29348F",
-                            textDecoration: "none",
-                        }}
-                    >
-                        iCX
-                    </Link>
-                    <Link
-                        href="/groups"
-                        style={{
-                            position: "absolute",
-                            width: "120px",
-                            height: "40px",
-                            left: "1180px",
-                            top: "55px",
-                            fontFamily: "'Poppins', sans-serif",
-                            fontWeight: 400,
-                            fontSize: "24px",
-                            lineHeight: "36px",
-                            textAlign: "center",
-                            color: "#29348F",
-                            textDecoration: "none",
-                        }}
-                    >
-                        Groups
-                    </Link>
-                    <Link
-                        href="/faqs"
-                        style={{
-                            position: "absolute",
-                            width: "120px",
-                            height: "40px",
-                            left: "1320px",
-                            top: "55px",
-                            fontFamily: "'Poppins', sans-serif",
-                            fontWeight: 400,
-                            fontSize: "24px",
-                            lineHeight: "36px",
-                            textAlign: "center",
-                            color: "#29348F",
-                            textDecoration: "none",
-                        }}
-                    >
-                        FAQs
-                    </Link>
-                </div>
 
                 {/* Lorem Ipsum Title */}
                 <div
