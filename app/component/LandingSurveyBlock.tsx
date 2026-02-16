@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 
 const QUESTIONS = [
   "What's one word that best describes how you're feeling right now?",
-  "What emoji best describes you today?",
+  "What color best describes you today?",
   "How are you doing right now?",
   "If you can give your day a hashtag, what would it be?",
   "How are things going for you today?",
@@ -23,7 +23,17 @@ function pickStableQuestionIndex(seed: string, length: number) {
 
 const DARK_BLUE = "#1F2E8D";
 
-export default function LandingSurveyBlock() {
+const DownArrow = () => (
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={DARK_BLUE} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 5v14M19 12l-7 7-7-7" />
+  </svg>
+);
+
+type LandingSurveyBlockProps = {
+  onContinue?: () => void;
+};
+
+export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockProps = {}) {
   const [answer, setAnswer] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -46,7 +56,6 @@ export default function LandingSurveyBlock() {
     return QUESTIONS[questionIndex];
   }, [questionIndex]);
 
-  // Typing animation effect
   useEffect(() => {
     if (!question) return;
 
@@ -58,7 +67,7 @@ export default function LandingSurveyBlock() {
       if (i >= question.length) {
         clearInterval(interval);
       }
-    }, 40); // 40ms per character for a smooth typing feel
+    }, 40); 
 
     return () => clearInterval(interval);
   }, [question]);
@@ -92,24 +101,33 @@ export default function LandingSurveyBlock() {
         <p style={{ color: DARK_BLUE, fontSize: 30, fontWeight: 700, margin: "0 0 20px 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif" }}>
           Your answer has been submitted.<br />Thanks for sharing!
         </p>
+        <p style={{ color: DARK_BLUE, fontSize: 14, fontWeight: 500, margin: "16px 0 0 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif", opacity: 0.9 }}>
+          Scroll down to continue
+        </p>
         <button
-          onClick={() => {
-            setSubmitted(false);
-            setSeed(crypto.randomUUID()); // Pick a new question
-          }}
+          type="button"
+          onClick={onContinue}
+          aria-label="Scroll down to continue"
+          className="landing-survey-down-arrow"
           style={{
-            marginTop: '20px',
-            padding: '10px 30px',
-            background: DARK_BLUE,
-            color: 'white',
-            borderRadius: '30px',
-            fontSize: '20px',
-            fontFamily: "'Poppins', sans-serif",
+            marginTop: '12px',
+            padding: '8px',
+            background: 'transparent',
             border: 'none',
-            cursor: 'pointer'
+            cursor: onContinue ? 'pointer' : 'default',
+            color: DARK_BLUE,
           }}
         >
-          Send another
+          <DownArrow />
+          <style jsx global>{`
+            .landing-survey-down-arrow {
+              animation: landing-survey-bounce-down 1.5s ease-in-out infinite;
+            }
+            @keyframes landing-survey-bounce-down {
+              0%, 100% { transform: translateY(0); }
+              50% { transform: translateY(6px); }
+            }
+          `}</style>
         </button>
       </div>
     );
@@ -144,7 +162,6 @@ export default function LandingSurveyBlock() {
           QUICK CHECK IN
         </div>
 
-        {/* Question Title with Typing Animation */}
         <div
           style={{
             position: 'absolute',
@@ -158,7 +175,7 @@ export default function LandingSurveyBlock() {
             color: '#1F2E8D',
             padding: '0 40px',
             boxSizing: 'border-box',
-            height: '40px' // Maintain height during typing
+            height: '40px' 
           }}
         >
           {displayText}
@@ -172,7 +189,6 @@ export default function LandingSurveyBlock() {
           `}</style>
         </div>
 
-        {/* Input Box Area */}
         <textarea
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
@@ -199,7 +215,6 @@ export default function LandingSurveyBlock() {
           }}
         />
 
-        {/* Buttons Area - Bottom Right */}
         <div style={{
           position: 'absolute',
           bottom: '35px',
@@ -207,7 +222,6 @@ export default function LandingSurveyBlock() {
           display: 'flex',
           gap: '15px'
         }}>
-          {/* Clear Button */}
           <button
             type="button"
             onClick={() => setAnswer("")}
