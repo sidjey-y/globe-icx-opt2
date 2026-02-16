@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 const QUESTIONS = [
   "What’s one word that best describes how you’re feeling right now?",
+  "What color best describes you today?",
   "How are you doing right now?",
   "If you can give your day a hashtag, what would it be?",
   "How are things going for you today?",

@@ -37,6 +37,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
   const [answer, setAnswer] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const [seed, setSeed] = useState<string | null>(null);
   const [displayText, setDisplayText] = useState("");
@@ -190,6 +191,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         </div>
 
         <textarea
+          className="landing-survey-textarea"
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
           placeholder="Type here..."
@@ -201,10 +203,10 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             width: '85%',
             maxWidth: '900px',
             height: '140px',
-            background: 'rgba(224, 217, 217, 0.3)',
-            boxShadow: 'inset 0px 2px 4px rgba(0, 0, 0, 0.05)',
+            background: 'rgba(255, 255, 255, 0.95)',
+            boxShadow: 'inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(31, 52, 141, 0.12)',
             borderRadius: '20px',
-            border: '1px solid rgba(255,255,255,0.3)',
+            border: '2px solid rgba(31, 52, 141, 0.18)',
             padding: '20px',
             fontFamily: "'Poppins', sans-serif",
             fontSize: '18px',
@@ -243,13 +245,37 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           </button>
 
           {/* Submit Button */}
+          {submitError && (
+            <div
+              role="alert"
+              style={{
+                position: 'absolute',
+                bottom: '95px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '85%',
+                maxWidth: '900px',
+                padding: '10px 16px',
+                borderRadius: '12px',
+                background: 'rgba(220, 53, 69, 0.12)',
+                border: '1px solid rgba(220, 53, 69, 0.4)',
+                color: '#1F2E8D',
+                fontSize: '14px',
+                fontFamily: "'Poppins', sans-serif",
+                textAlign: 'center',
+              }}
+            >
+              {submitError}
+            </div>
+          )}
           <button
             type="button"
             onClick={async () => {
               if (!canSubmit || submitting) return;
               setSubmitting(true);
+              setSubmitError(null);
               try {
-                await fetch("/api/answers", {
+                const res = await fetch("/api/answers", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
@@ -259,9 +285,15 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                     answerText: answer.trim(),
                   }),
                 });
-                setSubmitted(true);
+                const data = await res.json().catch(() => ({}));
+                if (res.ok) {
+                  setSubmitted(true);
+                } else {
+                  setSubmitError(data?.error ?? "Failed to save. Please try again.");
+                }
               } catch (e) {
                 console.error(e);
+                setSubmitError("Network error. Please try again.");
               } finally {
                 setSubmitting(false);
               }

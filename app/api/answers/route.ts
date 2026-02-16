@@ -27,14 +27,31 @@ export async function POST(req: Request) {
         questionIndex,
         questionText,
         answerText,
-        userEmail: "",
       },
       select: { id: true, createdAt: true },
     });
 
     return NextResponse.json({ ok: true, saved }, { status: 201 });
   } catch (e) {
-    console.error(e);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    console.error("POST /api/answers error:", e);
+    const message = e instanceof Error ? e.message : "Server error";
+    const isDbConfig =
+      message.includes("datasource") ||
+      message.includes("CONNECTION_STRING") ||
+      message.includes("PrismaClientConstructor");
+    const isAuth = message.includes("authentication") || message.includes("password") || message.includes("Auth");
+    const isConnection = message.includes("connect") || message.includes("ECONNREFUSED") || message.includes("ENOTFOUND");
+    const isNoTable = message.includes("does not exist") || message.includes("relation");
+    const dev = process.env.NODE_ENV !== "production";
+    let userMessage = "Server error";
+    if (isDbConfig) userMessage = "Database not configured. Set DATABASE_URL and DIRECT_URL in .env and restart the server.";
+    else if (isAuth) userMessage = "Database login failed. Check username and password in .env (and special characters in password must be URL-encoded).";
+    else if (isConnection) userMessage = "Cannot connect to database. Is PostgreSQL running? Is the host/port correct in .env?";
+    else if (isNoTable) userMessage = "Database tables missing. Run: npx prisma migrate deploy";
+    else if (dev) userMessage = message;
+    return NextResponse.json(
+      { error: userMessage },
+      { status: isDbConfig ? 503 : 500 }
+    );
   }
 }

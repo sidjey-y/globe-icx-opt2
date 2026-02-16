@@ -94,41 +94,90 @@ export default function LandingPage() {
           box-shadow: 0 0 0 2px rgba(0, 160, 234, 0.25), 0 8px 25px rgba(0, 160, 234, 0.2);
         }
 
+        .landing-survey-textarea::placeholder {
+          color: rgba(31, 52, 141, 0.55);
+        }
+        .landing-survey-textarea:focus {
+          border-color: rgba(31, 52, 141, 0.38);
+          box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(31, 52, 141, 0.15);
+        }
+
         .lighthouse-beam-pulse {
-          animation: lighthouse-beam-pulse 2.5s ease-in-out infinite;
+          animation: lighthouse-beam-pulse 3.8s ease-in-out infinite;
         }
         @keyframes lighthouse-beam-pulse {
           0%, 100% {
-            opacity: 0.78;
-            filter: brightness(0.94) drop-shadow(0 0 12px rgba(0, 160, 234, 0.3));
+            opacity: 0.5;
+            filter: brightness(0.82) drop-shadow(0 0 24px rgba(0, 160, 234, 0.5));
           }
           50% {
             opacity: 1;
-            filter: brightness(1.06) drop-shadow(0 0 28px rgba(0, 160, 234, 0.55));
+            filter: brightness(1.22) drop-shadow(0 0 64px rgba(0, 160, 234, 0.9));
           }
         }
 
         .lighthouse-beam-focused {
           animation: none !important;
           opacity: 1 !important;
-          filter: drop-shadow(0 0 20px rgba(0, 160, 234, 0.5)) !important;
+          filter: drop-shadow(0 0 24px rgba(0, 160, 234, 0.6)) !important;
         }
 
         .lighthouse-idle {
-          animation: lighthouse-idle 3s ease-in-out infinite;
+          animation: lighthouse-idle 4.5s ease-in-out infinite;
         }
         @keyframes lighthouse-idle {
           0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.04); }
+          50% { transform: scale(1.08); }
         }
 
-        /* Subtle "lantern" glow on the lighthouse tower */
+        /* Lantern glow on the lighthouse tower */
         .lighthouse-glow {
-          animation: lighthouse-glow 4s ease-in-out infinite;
+          animation: lighthouse-glow 5.2s ease-in-out infinite;
         }
         @keyframes lighthouse-glow {
-          0%, 100% { filter: brightness(1) drop-shadow(0 -4px 20px rgba(255, 220, 180, 0.12)); }
-          50% { filter: brightness(1.08) drop-shadow(0 -6px 28px rgba(255, 235, 200, 0.2)); }
+          0%, 100% { filter: brightness(1) drop-shadow(0 -8px 36px rgba(255, 220, 180, 0.3)); }
+          50% { filter: brightness(1.25) drop-shadow(0 -14px 56px rgba(255, 235, 200, 0.6)); }
+        }
+
+        .icx-logo-shine {
+          position: relative;
+          overflow: visible;
+        }
+        .icx-logo-shine::before {
+          content: "";
+          position: absolute;
+          top: -24px;
+          left: -48px;
+          right: -48px;
+          bottom: -24px;
+          background: radial-gradient(
+            ellipse 130% 110% at 25% 100%,
+            rgba(200, 236, 255, 0.7),
+            transparent 60%
+          );
+          pointer-events: none;
+          z-index: -1;
+          animation: icx-logo-beam-touch 2.5s ease-in-out infinite;
+        }
+        @keyframes icx-logo-beam-touch {
+          0%, 100% { opacity: 0.7; }
+          50% { opacity: 1; }
+        }
+        .icx-logo-beam-glow {
+          filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.08));
+          animation: icx-logo-beam-glow 2.5s ease-in-out infinite, icx-logo-breathe 3.5s ease-in-out infinite;
+        }
+        @keyframes icx-logo-beam-glow {
+          0%, 100% {
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.08));
+          }
+          50% {
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06)) drop-shadow(0 8px 28px rgba(0, 0, 0, 0.1));
+          }
+        }
+        @keyframes icx-logo-breathe {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.02); }
         }
       `}</style>
       <div
@@ -198,6 +247,26 @@ export default function LandingPage() {
 
         {/* Layer 3: Main Content (Text, Nav, Chatbox) */}
         <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%", zIndex: 10 }}>
+
+          {/* ICX Logo - top left, lit by lighthouse beam */}
+          <div
+            className="icx-logo-shine icx-logo-beam-glow"
+            style={{
+              position: "absolute",
+              left: "56px",
+              top: "24px",
+              zIndex: 20,
+            }}
+          >
+            <Image
+              src="/images/icx-logo.png"
+              alt="ICX - Internal Customer Experience"
+              width={467}
+              height={187}
+              style={{ width: "auto", height: "200px", objectFit: "contain", display: "block" }}
+              priority
+            />
+          </div>
 
           {/* Hi, Ka-Globe! */}
           <div
