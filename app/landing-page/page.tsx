@@ -207,37 +207,6 @@ export default function LandingPage() {
             <LandingSurveyBlock onContinue={scrollToVideo} />
           </div>
 
-          {/* Next Button (Now Scrolls) */}
-          <button
-            onClick={scrollToVideo}
-            className="icxNextButton"
-            style={{
-              position: "absolute",
-              width: "196px",
-              height: "52px",
-              left: "802px",
-              top: "715px",
-              background: "#3D59B7",
-              borderRadius: "30px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "none",
-              cursor: "pointer",
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              zIndex: 20
-            }}
-          >
-            <span style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 600,
-              fontSize: "24px",
-              color: "#FFFFFF",
-            }}>
-              Next
-            </span>
-          </button>
-
           {/* iCX makes sharing feedback easy and meaningful! */}
           <div
             style={{
