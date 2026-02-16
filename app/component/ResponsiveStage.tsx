@@ -24,13 +24,19 @@ export default function ResponsiveStage({
 
     useEffect(() => {
         setIsClient(true);
+        let embedded = false;
+        try {
+            embedded = window.self !== window.top;
+        } catch {
+            embedded = true;
+        }
         const handleResize = () => {
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
             if (fillViewport) {
                 const scaleW = viewportWidth / designWidth;
                 const scaleH = viewportHeight / designHeight;
-                setScale(Math.max(scaleW, scaleH));
+                setScale(embedded ? Math.min(scaleW, scaleH) : Math.max(scaleW, scaleH));
             } else {
                 setScale(Math.min(1, viewportWidth / designWidth));
             }
