@@ -11,7 +11,12 @@ export default function LandingPage() {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <ResponsiveStage designWidth={1512} designHeight={800}>
+    <ResponsiveStage
+      designWidth={1512}
+      designHeight={800}
+      fillViewport
+      background="#C8ECFF"
+    >
       <style jsx global>{`
         .icxNextButton {
           transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, outline 120ms ease !important;
