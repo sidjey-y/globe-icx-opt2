@@ -200,10 +200,20 @@ export default function LandingPage() {
           }}
         />
 
-        {/* Layer 2: Hero Elements (Lighthouse & Beam) */}
-        <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%", zIndex: 1, pointerEvents: "none" }}>
-
-          {/* Vector 1 (Beam) */}
+        {/* Layer 2: Hero Elements (Lighthouse & Beam) - beam clipped and faded to screen */}
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            pointerEvents: "none",
+            overflow: "hidden",
+          }}
+        >
+          {/* Vector 1 (Beam) - fades out toward bottom so it stays scoped to screen */}
           <div
             className={`lighthouse-beam-pulse ${isFocused ? "lighthouse-beam-focused" : ""}`}
             style={{
@@ -214,6 +224,8 @@ export default function LandingPage() {
               top: "-103px",
               zIndex: 1,
               transition: "filter 0.3s ease, transform 0.3s ease",
+              maskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 100%)",
             }}
           >
             <Image
