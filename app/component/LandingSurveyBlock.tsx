@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 
 const QUESTIONS = [
   "What's one word that best describes how you're feeling right now?",
+  "What color best describes you today?",
   "How are you doing right now?",
   "If you can give your day a hashtag, what would it be?",
   "How are things going for you today?",
@@ -55,7 +56,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
     return QUESTIONS[questionIndex];
   }, [questionIndex]);
 
-  // Typing animation effect
   useEffect(() => {
     if (!question) return;
 
@@ -67,7 +67,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
       if (i >= question.length) {
         clearInterval(interval);
       }
-    }, 40); // 40ms per character for a smooth typing feel
+    }, 40); 
 
     return () => clearInterval(interval);
   }, [question]);
@@ -162,7 +162,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           QUICK CHECK IN
         </div>
 
-        {/* Question Title with Typing Animation */}
         <div
           style={{
             position: 'absolute',
@@ -176,7 +175,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             color: '#1F2E8D',
             padding: '0 40px',
             boxSizing: 'border-box',
-            height: '40px' // Maintain height during typing
+            height: '40px' 
           }}
         >
           {displayText}
@@ -190,7 +189,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           `}</style>
         </div>
 
-        {/* Input Box Area */}
         <textarea
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
@@ -217,7 +215,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           }}
         />
 
-        {/* Buttons Area - Bottom Right */}
         <div style={{
           position: 'absolute',
           bottom: '35px',
@@ -225,7 +222,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           display: 'flex',
           gap: '15px'
         }}>
-          {/* Clear Button */}
           <button
             type="button"
             onClick={() => setAnswer("")}

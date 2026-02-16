@@ -30,7 +30,6 @@ export default function QuestionCard() {
 
   useEffect(() => {
     setMounted(true);
-    // New seed on every load so the question changes on refresh
     setSeed(crypto.randomUUID());
   }, []);
 
@@ -92,7 +91,7 @@ export default function QuestionCard() {
         backgroundOrigin: "border-box",
         backgroundClip: "padding-box, border-box",
         boxShadow: "0 18px 60px rgba(0,0,0,0.60), 0 0 0 1px rgba(255,255,255,0.06) inset",
-        overflow: "hidden", // keep for card visuals (safe now because menu is portaled)
+        overflow: "hidden", 
       }}
     >
       <div

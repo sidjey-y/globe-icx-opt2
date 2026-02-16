@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "@/app/component/Providers";
-import UserTracker from "@/app/component/UserTracker";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -23,10 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${poppins.className} antialiased`}>
-        <Providers session={null}>
-          <UserTracker />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

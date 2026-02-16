@@ -1,18 +1,10 @@
 export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/lib/auth";
 import { prisma } from "../../lib/prisma";
 
 export async function POST(req: Request) {
   try {
-    const session = await getServerSession(authOptions);
-    const userEmail =
-      session?.user?.email?.toLowerCase().endsWith("@globe.com.ph")
-        ? session.user.email
-        : "";
-
     const body = await req.json();
 
     const seed = String(body?.seed ?? "").trim();
@@ -35,7 +27,7 @@ export async function POST(req: Request) {
         questionIndex,
         questionText,
         answerText,
-        userEmail,
+        userEmail: "",
       },
       select: { id: true, createdAt: true },
     });

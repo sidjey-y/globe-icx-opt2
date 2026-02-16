@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LandingSurveyBlock from "@/app/component/LandingSurveyBlock";
@@ -8,15 +8,10 @@ import LandingSurveyBlock from "@/app/component/LandingSurveyBlock";
 import ResponsiveStage from "../component/ResponsiveStage";
 
 export default function LandingPage() {
-  const videoSectionRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
 
-  const scrollToVideo = () => {
-    videoSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  };
-
   return (
-    <ResponsiveStage designWidth={1512} designHeight={1948}>
+    <ResponsiveStage designWidth={1512} designHeight={800}>
       <style jsx global>{`
         .icxNextButton {
           transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, outline 120ms ease !important;
@@ -98,12 +93,49 @@ export default function LandingPage() {
           transform: scale(0.998);
           box-shadow: 0 0 0 2px rgba(0, 160, 234, 0.25), 0 8px 25px rgba(0, 160, 234, 0.2);
         }
+
+        .lighthouse-beam-pulse {
+          animation: lighthouse-beam-pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes lighthouse-beam-pulse {
+          0%, 100% {
+            opacity: 0.78;
+            filter: brightness(0.94) drop-shadow(0 0 12px rgba(0, 160, 234, 0.3));
+          }
+          50% {
+            opacity: 1;
+            filter: brightness(1.06) drop-shadow(0 0 28px rgba(0, 160, 234, 0.55));
+          }
+        }
+
+        .lighthouse-beam-focused {
+          animation: none !important;
+          opacity: 1 !important;
+          filter: drop-shadow(0 0 20px rgba(0, 160, 234, 0.5)) !important;
+        }
+
+        .lighthouse-idle {
+          animation: lighthouse-idle 3s ease-in-out infinite;
+        }
+        @keyframes lighthouse-idle {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.04); }
+        }
+
+        /* Subtle "lantern" glow on the lighthouse tower */
+        .lighthouse-glow {
+          animation: lighthouse-glow 4s ease-in-out infinite;
+        }
+        @keyframes lighthouse-glow {
+          0%, 100% { filter: brightness(1) drop-shadow(0 -4px 20px rgba(255, 220, 180, 0.12)); }
+          50% { filter: brightness(1.08) drop-shadow(0 -6px 28px rgba(255, 235, 200, 0.2)); }
+        }
       `}</style>
       <div
         style={{
           position: "relative",
-          width: "1512px", // Fixed width
-          height: "1948px", // Fixed height
+          width: "1512px",
+          height: "800px",
           background: "#C8ECFF",
           margin: "0 auto",
           overflow: "hidden",
@@ -113,10 +145,7 @@ export default function LandingPage() {
         <div
           style={{
             position: "absolute",
-            width: "1516px",
-            height: "962px",
-            left: "0px",
-            top: "0px",
+            inset: 0,
             background: "#C8ECFF",
             zIndex: 0,
           }}
@@ -127,6 +156,7 @@ export default function LandingPage() {
 
           {/* Vector 1 (Beam) */}
           <div
+            className={`lighthouse-beam-pulse ${isFocused ? "lighthouse-beam-focused" : ""}`}
             style={{
               position: "absolute",
               width: "1595px",
@@ -134,9 +164,7 @@ export default function LandingPage() {
               left: "152px",
               top: "-103px",
               zIndex: 1,
-              filter: isFocused ? 'drop-shadow(0 0 20px rgba(0, 160, 234, 0.5))' : 'none',
-              transform: isFocused ? 'scale(1.01)' : 'scale(1)',
-              transition: 'filter 0.3s ease, transform 0.3s ease',
+              transition: "filter 0.3s ease, transform 0.3s ease",
             }}
           >
             <Image
@@ -149,6 +177,7 @@ export default function LandingPage() {
 
           {/* Lighthouse */}
           <div
+            className="lighthouse-idle lighthouse-glow"
             style={{
               position: "absolute",
               width: "887px",
@@ -204,67 +233,8 @@ export default function LandingPage() {
               top: "295px",
             }}
           >
-            <LandingSurveyBlock onContinue={scrollToVideo} />
+            <LandingSurveyBlock />
           </div>
-
-          {/* iCX makes sharing feedback easy and meaningful! */}
-          <div
-            style={{
-              position: "absolute",
-              width: "1512px",
-              height: "60px",
-              left: "0px",
-              top: "1065px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 700,
-              fontSize: "40px",
-              lineHeight: "60px",
-              textAlign: "center",
-              color: "#1F2E8D",
-            }}
-          >
-            iCX makes sharing feedback easy and meaningful!
-          </div>
-
-          {/* Video Section */}
-          <div
-            ref={videoSectionRef}
-            style={{
-              position: "absolute",
-              width: "1031px",
-              height: "544px",
-              left: "240px",
-              top: "1162px",
-            }}
-          >
-            {/* Rectangle 1 (Black bg) */}
-            <div
-              style={{
-                position: "absolute",
-                width: "1031px",
-                height: "544px",
-                left: "0px",
-                top: "0px",
-                background: "#030303",
-                boxShadow: "0px 0px 5px 2px rgba(0, 0, 0, 0.3)",
-                borderRadius: "30px",
-              }}
-            />
-            {/* Play Button Triangle */}
-            <div
-              style={{
-                position: "absolute",
-                left: "465px",
-                top: "218px",
-                width: 0,
-                height: 0,
-                borderTop: "54px solid transparent",
-                borderBottom: "54px solid transparent",
-                borderLeft: "100px solid #FFFFFF",
-              }}
-            />
-          </div>
-
 
         </div>
       </div>
