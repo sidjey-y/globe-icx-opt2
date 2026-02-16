@@ -204,7 +204,7 @@ export default function LandingPage() {
               top: "295px",
             }}
           >
-            <LandingSurveyBlock />
+            <LandingSurveyBlock onContinue={scrollToVideo} />
           </div>
 
           {/* Next Button (Now Scrolls) */}
