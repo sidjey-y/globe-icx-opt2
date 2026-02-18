@@ -99,40 +99,36 @@
 
   </style>
   
-  <div class="carousel-wrapper" id="carouselWrap">
+  <div class="carousel-wrapper">
     <div class="carousel-track" id="carouselTrack">
   
-      <!-- SLIDE 1 (4 items) -->
       <div class="carousel-slide">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX3mtmB6YbaeULX9Fn8fr3fxIEnobz5C1K56D-o4lT5PLBLw/viewform">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/01%20AIG.png">
+        <a href="FORM_LINK_AIG" target="_blank">
+          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/commercial/01%20B2B.png">
         </a>
-        <a href="https://forms.gle/dUgxFZ4NdG8dGcFb9">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/02%20AI.png">
+        <a href="FORM_LINK_AI" target="_blank">
+          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/commercial/02%20B2C.png">
         </a>
-        <a href="FORM_LINK_CLSG">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/03%20CLSG.png">
+        <a href="FORM_LINK_CLSG" target="_blank">
+          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/commercial/03%20BB.png">
         </a>
-        <a href="FORM_LINK_FA">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/04%20F%26A.png">
-        </a>
+        <a href="FORM_LINK_FA" target="_blank">
+            <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/commercial/04%20CMB.png">
+          </a>
       </div>
   
       <div class="carousel-slide">
-        <a href="FORM_LINK_HR">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/05%20HR.png">
+       
+        <a href="FORM_LINK_HR" target="_blank">
+          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/commercial/05%20EDS.png">
         </a>
-        <a href="FORM_LINK_ISDP">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/06%20ISDP.png">
+        <a href="FORM_LINK_ISDP" target="_blank">
+          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/commercial/06%20Fvt.png">
         </a>
-        <a href="FORM_LINK_IA">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/07%20IA.png">
-        </a>
-        <a href="FORM_LINK_SCC">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/08%20SCC.png">
-        </a>
+        <a href="FORM_LINK_SCC" target="_blank">
+            <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/commercial/07%20MARKETING.png">
+          </a>
       </div>
-    
     </div>
   
     <button class="carousel-btn prev" type="button" aria-label="Previous" onclick="moveSlide(-1)">‹</button>
@@ -202,9 +198,6 @@
     document.getElementById("carouselCount").textContent =
     `${index + 1} / ${track.children.length}`;
     }
-
-
-  
     buildDots();
   </script>
   

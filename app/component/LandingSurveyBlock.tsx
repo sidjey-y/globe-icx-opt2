@@ -13,6 +13,8 @@ const QUESTIONS = [
   "Where's your desk today - home, office or field?",
   "How's your day so far?",
   "What's your favorite snack to share in a meeting?",
+  "As an employee, what makes you proud to be Ka-Globe?",
+  "As a customer, what makes you love Globe?",
 ];
 
 function pickStableQuestionIndex(seed: string, length: number) {
