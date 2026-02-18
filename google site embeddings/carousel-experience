@@ -1,0 +1,172 @@
+<style>
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.45s ease;
+    will-change: transform;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 16px 64px;
+    box-sizing: border-box;
+  }
+
+  .carousel-slide a {
+    display: block;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: block;
+  }
+
+  .carousel-slide img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.65);
+    color: #2f3576;
+    border: 2px solid rgba(47, 53, 118, 0.35);
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    z-index: 1000;
+  }
+
+  .carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #2f3576;
+  }
+
+  .prev { left: 0; }
+  .next { right: 0; }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #cfcfcf;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .carousel-dot.active {
+    width: 18px;
+    background: #2f3576;
+  }
+</style>
+
+<div class="carousel-wrapper" id="carouselWrapExp">
+  <div class="carousel-track" id="carouselTrackExp">
+
+    <div class="carousel-slide">
+      <a href="FORM_LINK_FA" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/exp/04%20CXC.png" alt="CXC">
+      </a>
+      <a href="FORM_LINK_AIG" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/exp/01%20ISG.png" alt="ISG">
+      </a>
+      <a href="FORM_LINK_AI" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/exp/02%20NTG.png" alt="NTG">
+      </a>
+      <a href="FORM_LINK_CLSG" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/exp/03%20OSCMX.png" alt="OSCMX">
+      </a>
+    </div>
+
+
+  </div>
+
+  <button class="carousel-btn prev" type="button" onclick="moveSlideExp(-1)">‹</button>
+  <button class="carousel-btn next" type="button" onclick="moveSlideExp(1)">›</button>
+</div>
+
+<div class="carousel-dots" id="carouselDotsExp"></div>
+
+<script>
+  let indexExp = 0;
+
+  function buildDotsExp() {
+    const track = document.getElementById("carouselTrackExp");
+    const dots = document.getElementById("carouselDotsExp");
+    dots.innerHTML = "";
+
+    const total = track.children.length;
+
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement("div");
+      dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+      dot.onclick = () => goToSlideExp(i);
+      dots.appendChild(dot);
+    }
+  }
+
+  function updateDotsExp() {
+    const dots = document.querySelectorAll("#carouselDotsExp .carousel-dot");
+    dots.forEach((d, i) => d.classList.toggle("active", i === indexExp));
+  }
+
+  function moveSlideExp(direction) {
+    const track = document.getElementById("carouselTrackExp");
+    const total = track.children.length;
+
+    indexExp = (indexExp + direction + total) % total;
+    track.style.transform = `translateX(-${indexExp * 100}%)`;
+    updateDotsExp();
+  }
+
+  function goToSlideExp(i) {
+    const track = document.getElementById("carouselTrackExp");
+    indexExp = i;
+    track.style.transform = `translateX(-${indexExp * 100}%)`;
+    updateDotsExp();
+  }
+
+  function hideControlsIfSingleSlide() {
+    const track = document.getElementById("carouselTrackExp");
+    const total = track.children.length;
+
+    if (total <= 1) {
+      document.querySelectorAll("#carouselWrapExp .carousel-btn")
+        .forEach(btn => btn.style.display = "none");
+
+      document.getElementById("carouselDotsExp").style.display = "none";
+    }
+  }
+
+  buildDotsExp();
+  hideControlsIfSingleSlide();
+</script>
