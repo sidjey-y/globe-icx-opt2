@@ -110,25 +110,11 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            display: 'inline-block',
-            padding: '16px 40px',
-            background: DARK_BLUE,
-            color: '#FFFFFF',
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 600,
             fontSize: '20px',
-            borderRadius: '50px',
+            color: DARK_BLUE,
             textDecoration: 'none',
-            boxShadow: '0 4px 16px rgba(31, 46, 141, 0.4)',
-            transition: 'transform 0.2s, box-shadow 0.2s',
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(31, 46, 141, 0.5)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(31, 46, 141, 0.4)';
           }}
         >
           Answer iCX now!
