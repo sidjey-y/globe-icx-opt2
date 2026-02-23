@@ -79,12 +79,13 @@ export default function ResponsiveStage({
                     style={{
                         width: `${designWidth}px`,
                         height: `${designHeight}px`,
-                        transform: `translate(-50%, -50%) scale(${scale})`,
+                        transform: `translate(-50%, -50%) scale(${scale}) translateZ(0)`,
                         transformOrigin: "center center",
                         position: "absolute",
                         left: "50%",
                         top: "50%",
                         willChange: "transform",
+                        backfaceVisibility: "hidden",
                     }}
                 >
                     {children}

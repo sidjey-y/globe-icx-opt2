@@ -6,16 +6,39 @@ import LandingSurveyBlock from "@/app/component/LandingSurveyBlock";
 import ResponsiveStage from "../component/ResponsiveStage";
 
 const LANDING_BG =
-  "linear-gradient(180deg, #0f1544 0%, #121a52 30%, #1a2358 60%, #1e2848 85%, #232b3d 100%)";
+  "linear-gradient(180deg, #162a7c 0%, #182c7d 30%, #263a8c 60%, #2c4088 100%)";
 
 export default function LandingPage() {
   return (
-    <ResponsiveStage
-      designWidth={1512}
-      designHeight={800}
-      fillViewport
-      background={LANDING_BG}
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: LANDING_BG,
+        zIndex: 0,
+      }}
     >
+      {/* Grain texture - overlay on blue gradient */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23g)' fill='%23999'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "180px 180px",
+          opacity: 0.55,
+          mixBlendMode: "soft-light",
+          pointerEvents: "none",
+        }}
+      />
+      <div style={{ position: "relative", zIndex: 1, width: "100%", height: "100%" }}>
+        <ResponsiveStage
+          designWidth={1512}
+          designHeight={800}
+          fillViewport
+          background="transparent"
+        >
       <style jsx global>{`
         .icxNextButton {
           transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, outline 120ms ease !important;
@@ -106,19 +129,6 @@ export default function LandingPage() {
           box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(31, 52, 141, 0.15);
         }
 
-        .landing-bg-gradient {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-          background: linear-gradient(
-            180deg,
-            #0f1544 0%,
-            #121a52 30%,
-            #1a2358 60%,
-            #1e2848 85%,
-            #232b3d 100%
-          );
-        }
         .landing-bg-glow {
           position: absolute;
           inset: 0;
@@ -131,14 +141,6 @@ export default function LandingPage() {
           );
           pointer-events: none;
         }
-        .landing-bg-noise {
-          position: absolute;
-          inset: 0;
-          z-index: 1;
-          opacity: 0.35;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-          pointer-events: none;
-        }
       `}</style>
       <div
         style={{
@@ -149,10 +151,8 @@ export default function LandingPage() {
           overflow: "hidden",
         }}
       >
-        {/* Dark blue gradient + bottom-left glow + grain texture background */}
-        <div className="landing-bg-gradient" />
+        {/* Bottom-left glow overlay */}
         <div className="landing-bg-glow" />
-        <div className="landing-bg-noise" />
 
         {/* Main Content (Text, Chatbox) - centered */}
         <div
@@ -196,6 +196,8 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-    </ResponsiveStage>
+        </ResponsiveStage>
+      </div>
+    </div>
   );
 }
