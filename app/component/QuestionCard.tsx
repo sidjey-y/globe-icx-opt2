@@ -15,10 +15,10 @@ const QUESTIONS = [
   "As an employee, what makes you proud to be Ka-Globe?",
   "As a customer, what makes you love Globe?",
   "How was your caffeine boost today?",
-  "How did your meeting feel today?",
+  "How did your meetings go today?",
   "How did your trip to work go today?",
-  "Any food service wins or fails today?",
-  "How smooth or glitchy was your app experience?",
+  "How was it like getting your food today? Any service wins or fails?",
+  "Any recent app experience that felt smooth or glitchy? How did it go?",
   "What vibe did your conversation with a teammate give you today?"
 ];
 

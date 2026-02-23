@@ -109,12 +109,24 @@ export default function LandingPage() {
           z-index: 0;
           background: linear-gradient(
             180deg,
-            #2a3a8f 0%,
-            #3d5a9e 35%,
-            #5b8ec9 70%,
-            #8ab4dc 85%,
-            #b8cce8 100%
+            #1A237E 0%,
+            #1e2a8a 25%,
+            #2a3578 50%,
+            #3b4d6e 75%,
+            #3d5165 100%
           );
+        }
+        .landing-bg-glow {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: radial-gradient(
+            ellipse 80% 60% at 0% 100%,
+            rgba(224, 176, 255, 0.18) 0%,
+            rgba(224, 176, 255, 0.06) 40%,
+            transparent 70%
+          );
+          pointer-events: none;
         }
         .landing-bg-noise {
           position: absolute;
@@ -134,8 +146,9 @@ export default function LandingPage() {
           overflow: "hidden",
         }}
       >
-        {/* Blue gradient + grain texture background */}
+        {/* Dark blue gradient + bottom-left glow + grain texture background */}
         <div className="landing-bg-gradient" />
+        <div className="landing-bg-glow" />
         <div className="landing-bg-noise" />
 
         {/* Main Content (Text, Chatbox) - centered */}
