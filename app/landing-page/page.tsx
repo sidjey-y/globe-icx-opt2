@@ -5,13 +5,16 @@ import LandingSurveyBlock from "@/app/component/LandingSurveyBlock";
 
 import ResponsiveStage from "../component/ResponsiveStage";
 
+const LANDING_BG =
+  "linear-gradient(180deg, #0f1544 0%, #121a52 30%, #1a2358 60%, #1e2848 85%, #232b3d 100%)";
+
 export default function LandingPage() {
   return (
     <ResponsiveStage
       designWidth={1512}
       designHeight={800}
       fillViewport
-      background="transparent"
+      background={LANDING_BG}
     >
       <style jsx global>{`
         .icxNextButton {
