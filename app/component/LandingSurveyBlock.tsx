@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 const QUESTIONS = [
   "What's one word that best describes how you're feeling right now?",
@@ -97,13 +98,39 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           justifyContent: 'center',
           background: 'rgba(255, 255, 255, 0.2)',
           backdropFilter: 'blur(5px)',
-          borderRadius: '30px',
+          borderRadius: '36px',
           boxShadow: '0px 0px 5px 2px rgba(0, 0, 0, 0.3)',
         }}
       >
-        <p style={{ color: DARK_BLUE, fontSize: 30, fontWeight: 700, margin: "0 0 20px 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif" }}>
+        <p style={{ color: DARK_BLUE, fontSize: 38, fontWeight: 700, margin: "0 0 20px 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif" }}>
           Your answer has been submitted.<br />Thanks for sharing!
         </p>
+        <Link
+          href="/groups"
+          style={{
+            display: 'inline-block',
+            padding: '16px 40px',
+            background: DARK_BLUE,
+            color: '#FFFFFF',
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 600,
+            fontSize: '20px',
+            borderRadius: '50px',
+            textDecoration: 'none',
+            boxShadow: '0 4px 16px rgba(31, 46, 141, 0.4)',
+            transition: 'transform 0.2s, box-shadow 0.2s',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(31, 46, 141, 0.5)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(31, 46, 141, 0.4)';
+          }}
+        >
+          Answer iCX now!
+        </Link>
       </div>
     );
   }
@@ -125,11 +152,11 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         {/* QUICK CHECK IN Label */}
         <div style={{
           position: 'absolute',
-          left: '45px',
-          top: '35px',
+          left: '55px',
+          top: '44px',
           fontFamily: "'Poppins', sans-serif",
           fontWeight: 500,
-          fontSize: '14px',
+          fontSize: '18px',
           letterSpacing: '0.05em',
           color: '#1F2E8D',
           opacity: 0.8
@@ -140,17 +167,17 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         <div
           style={{
             position: 'absolute',
-            top: '70px',
+            top: '88px',
             width: '100%',
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 700,
-            fontSize: '24px',
-            lineHeight: '36px',
+            fontSize: '30px',
+            lineHeight: '44px',
             textAlign: 'center',
             color: '#1F2E8D',
-            padding: '0 40px',
+            padding: '0 55px',
             boxSizing: 'border-box',
-            height: '40px' 
+            height: '48px' 
           }}
         >
           {displayText}
@@ -173,17 +200,17 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
-            top: '130px',
+            top: '170px',
             width: '85%',
-            maxWidth: '900px',
-            height: '140px',
+            maxWidth: '1050px',
+            height: '200px',
             background: 'rgba(255, 255, 255, 0.95)',
             boxShadow: 'inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(31, 52, 141, 0.12)',
-            borderRadius: '20px',
+            borderRadius: '24px',
             border: '2px solid rgba(31, 52, 141, 0.18)',
-            padding: '20px',
+            padding: '28px',
             fontFamily: "'Poppins', sans-serif",
-            fontSize: '18px',
+            fontSize: '22px',
             color: '#1F2E8D',
             resize: 'none',
             outline: 'none',
@@ -193,22 +220,22 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
 
         <div style={{
           position: 'absolute',
-          bottom: '35px',
-          right: '45px',
+          bottom: '48px',
+          right: '55px',
           display: 'flex',
-          gap: '15px'
+          gap: '20px'
         }}>
           <button
             type="button"
             onClick={() => setAnswer("")}
             style={{
-              width: '140px',
-              height: '44px',
+              width: '170px',
+              height: '54px',
               background: '#938E8E',
               borderRadius: '50px',
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 500,
-              fontSize: '16px',
+              fontSize: '18px',
               color: '#FFFFFF',
               border: 'none',
               cursor: 'pointer',
@@ -224,11 +251,11 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               role="alert"
               style={{
                 position: 'absolute',
-                bottom: '95px',
+                bottom: '120px',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: '85%',
-                maxWidth: '900px',
+                maxWidth: '1050px',
                 padding: '10px 16px',
                 borderRadius: '12px',
                 background: 'rgba(220, 53, 69, 0.12)',
@@ -274,13 +301,13 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             }}
             disabled={!canSubmit || submitting}
             style={{
-              width: '140px',
-              height: '44px',
+              width: '170px',
+              height: '54px',
               background: canSubmit ? '#1F2E8D' : '#938E8E',
               borderRadius: '50px',
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 500,
-              fontSize: '16px',
+              fontSize: '18px',
               color: '#FFFFFF',
               border: 'none',
               cursor: canSubmit ? 'pointer' : 'not-allowed',

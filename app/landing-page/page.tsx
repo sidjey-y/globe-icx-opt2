@@ -79,7 +79,7 @@ export default function LandingPage() {
         .icxCardShell {
           background: rgba(255, 255, 255, 0.9);
           border: 1px solid rgba(41, 52, 143, 0.10);
-          border-radius: 24px;
+          border-radius: 32px;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
           transition: box-shadow 180ms ease, transform 180ms ease;
         }
@@ -109,11 +109,11 @@ export default function LandingPage() {
           z-index: 0;
           background: linear-gradient(
             180deg,
-            #1A237E 0%,
-            #1e2a8a 25%,
-            #2a3578 50%,
-            #3b4d6e 75%,
-            #3d5165 100%
+            #0f1544 0%,
+            #121a52 30%,
+            #1a2358 60%,
+            #1e2848 85%,
+            #232b3d 100%
           );
         }
         .landing-bg-glow {
@@ -122,8 +122,8 @@ export default function LandingPage() {
           z-index: 0;
           background: radial-gradient(
             ellipse 80% 60% at 0% 100%,
-            rgba(224, 176, 255, 0.18) 0%,
-            rgba(224, 176, 255, 0.06) 40%,
+            rgba(160, 130, 200, 0.12) 0%,
+            rgba(160, 130, 200, 0.04) 40%,
             transparent 70%
           );
           pointer-events: none;
@@ -164,7 +164,7 @@ export default function LandingPage() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            gap: "24px",
+            gap: "36px",
           }}
         >
           {/* Hi, Ka-Globe! */}
@@ -172,8 +172,8 @@ export default function LandingPage() {
             style={{
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 700,
-              fontSize: "64px",
-              lineHeight: "96px",
+              fontSize: "96px",
+              lineHeight: "120px",
               textAlign: "center",
               color: "#FFFFFF",
             }}
@@ -185,8 +185,8 @@ export default function LandingPage() {
           <div
             className="icxCardShell"
             style={{
-              width: "920px",
-              height: "380px",
+              width: "1200px",
+              height: "520px",
             }}
           >
             <LandingSurveyBlock />
