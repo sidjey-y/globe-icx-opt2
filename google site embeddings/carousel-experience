@@ -1,24 +1,31 @@
 <style>
-  .carousel-wrapper {
-    position: relative;
-    width: 100%;
+
+  html, body {
     margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .carousel-wrapper {
+    margin-top: -13px;
+    margin-bottom: -20px;
+    width: 100%;
+    padding: 1px 24px;
+    box-sizing: border-box;
+    position: relative;
     overflow: hidden;
   }
 
   .carousel-track {
     display: flex;
-    transition: transform 0.45s ease;
-    will-change: transform;
+    transition: transform 0.4s ease;
   }
 
   .carousel-slide {
     min-width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    padding: 16px 64px;
-    box-sizing: border-box;
+    gap: 10px;
   }
 
   .carousel-slide a {
@@ -27,67 +34,64 @@
 
   .carousel-slide img {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 2px;
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: block;
   }
 
   .carousel-slide img:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  }
+
+  @media (max-width: 1024px) {
+    .carousel-slide {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .carousel-slide {
+      grid-template-columns: 1fr;
+    }
   }
 
   .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.65);
-    color: #2f3576;
-    border: 2px solid rgba(47, 53, 118, 0.35);
-    font-size: 30px;
-    line-height: 1;
+    background: rgba(0,0,0,0.35);
+    color: white;
+    border: none;
+    padding: 6px 10px;
     cursor: pointer;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    z-index: 1000;
   }
 
-  .carousel-btn:hover {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: #2f3576;
-  }
-
-  .prev { left: 0; }
-  .next { right: 0; }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
 
   .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 12px;
+    text-align: center;
+    margin-top: 6px;
   }
 
   .carousel-dot {
+    display: inline-block;
     width: 8px;
     height: 8px;
-    border-radius: 999px;
-    background: #cfcfcf;
-    transition: all 0.2s ease;
+    margin: 4px;
+    background: #ccc;
+    border-radius: 50%;
     cursor: pointer;
   }
 
   .carousel-dot.active {
-    width: 18px;
-    background: #2f3576;
+    background: #333;
   }
+
 </style>
+
 
 <div class="carousel-wrapper" id="carouselWrapExp">
   <div class="carousel-track" id="carouselTrackExp">

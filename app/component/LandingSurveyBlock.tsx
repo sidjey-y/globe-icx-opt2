@@ -106,7 +106,9 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           Your answer has been submitted.<br />Thanks for sharing!
         </p>
         <Link
-          href="/groups"
+          href="https://sites.google.com/globe.com.ph/icx/answer-icx-now"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             display: 'inline-block',
             padding: '16px 40px',

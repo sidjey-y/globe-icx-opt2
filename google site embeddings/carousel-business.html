@@ -1,210 +1,91 @@
 <style>
-    .carousel-wrapper {
-      position: relative;
-      width: 100%;
-      margin: 0;
-      overflow: hidden;
-    }
-  
-    .carousel-track {
-      display: flex;
-      transition: transform 0.45s ease;
-      will-change: transform;
-    }
-  
-    .carousel-slide {
-    min-width: 100%;
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .grid-wrapper {
+    margin-top: -13px;
+    margin-bottom: -20px;
+    width: 100%;
+    padding: 1px 24px;
+    box-sizing: border-box;
+  }
+
+  .grid-items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 10px;
+  }
 
-    padding: 16px 64px; 
-    box-sizing: border-box;
-    }
+  .grid-items a {
+    display: block;
+  }
 
-  
-    .carousel-slide a {
-      display: block;
-    }
-  
-    .carousel-slide img {
-      width: 100%;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      display: block;
-    }
-  
-    .carousel-slide img:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.15);
-    }
-  
-    .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
- 
-    background: rgba(255, 255, 255, 0.65);
-    color: #2f3576;
-
-    
-     border: 2px solid rgba(47, 53, 118, 0.35);
-
-    font-size: 30px;
-    line-height: 1;
+  .grid-items img {
+    width: 100%;
+    border-radius: 2px;
     cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: block;
+  }
 
-    backdrop-filter: blur(4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    z-index: 1000;
+  .grid-items img:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  }
+
+  @media (max-width: 1024px) {
+    .grid-items {
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .carousel-btn:hover {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: #2f3576;
+  @media (max-width: 600px) {
+    .grid-items {
+      grid-template-columns: 1fr;
     }
+  }
+
+</style>
 
 
-    .prev { left: -0px; }
-    .next { right: -0px; }
+<div class="grid-wrapper">
+  <div class="grid-items">
 
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 12px;
-    }
-  
-    .carousel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: #cfcfcf;
-    transition: all 0.2s ease;
-    }
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX3mtmB6YbaeULX9Fn8fr3fxIEnobz5C1K56D-o4lT5PLBLw/viewform">
+      <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/01%20AIG.png">
+    </a>
 
-    .carousel-dot.active {
-    width: 18px;
-    background: #2f3576;
-    }
+    <a href="https://forms.gle/dUgxFZ4NdG8dGcFb9">
+      <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/02%20AI.png">
+    </a>
 
-  </style>
-  
-  <div class="carousel-wrapper" id="carouselWrap">
-    <div class="carousel-track" id="carouselTrack">
-  
-      <!-- SLIDE 1 (4 items) -->
-      <div class="carousel-slide">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX3mtmB6YbaeULX9Fn8fr3fxIEnobz5C1K56D-o4lT5PLBLw/viewform">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/01%20AIG.png">
-        </a>
-        <a href="https://forms.gle/dUgxFZ4NdG8dGcFb9">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/02%20AI.png">
-        </a>
-        <a href="FORM_LINK_CLSG">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/03%20CLSG.png">
-        </a>
-        <a href="FORM_LINK_FA">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/04%20F%26A.png">
-        </a>
-      </div>
-  
-      <div class="carousel-slide">
-        <a href="FORM_LINK_HR">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/05%20HR.png">
-        </a>
-        <a href="FORM_LINK_ISDP">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/06%20ISDP.png">
-        </a>
-        <a href="FORM_LINK_IA">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/07%20IA.png">
-        </a>
-        <a href="FORM_LINK_SCC">
-          <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/08%20SCC.png">
-        </a>
-      </div>
-    
-    </div>
-  
-    <button class="carousel-btn prev" type="button" aria-label="Previous" onclick="moveSlide(-1)">‹</button>
-    <button class="carousel-btn next" type="button" aria-label="Next" onclick="moveSlide(1)">›</button>
+    <a href="FORM_LINK_CLSG">
+      <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/03%20CLSG.png">
+    </a>
+
+    <a href="FORM_LINK_FA">
+      <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/04%20F%26A.png">
+    </a>
+
+    <a href="FORM_LINK_HR">
+      <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/05%20HR.png">
+    </a>
+
+    <a href="FORM_LINK_ISDP">
+      <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/06%20ISDP.png">
+    </a>
+
+    <a href="FORM_LINK_IA">
+      <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/07%20IA.png">
+    </a>
+
+    <a href="FORM_LINK_SCC">
+      <img src="https://raw.githubusercontent.com/sidjey-y/globe-assets/main/business/08%20SCC.png">
+    </a>
+
   </div>
-  
-  <div class="carousel-dots" id="carouselDots"></div>
-  
-  <script>
-    let index = 0;
-  
-    function buildDots() {
-      const track = document.getElementById("carouselTrack");
-      const dots = document.getElementById("carouselDots");
-      if (!track || !dots) return;
-  
-      dots.innerHTML = "";
-      const total = track.children.length;
-  
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement("div");
-        dot.className = "carousel-dot" + (i === 0 ? " active" : "");
-        dot.onclick = () => goToSlide(i);
-        dots.appendChild(dot);
-      }
-    }
-  
-    function updateDots() {
-      const dots = document.querySelectorAll("#carouselDots .carousel-dot");
-      dots.forEach((d, i) => d.classList.toggle("active", i === index));
-    }
-  
-    function moveSlide(direction) {
-      const track = document.getElementById("carouselTrack");
-      if (!track) return;
-  
-      const total = track.children.length;
-      index = (index + direction + total) % total;
-      track.style.transform = `translateX(-${index * 100}%)`;
-      updateDots();
-      updateArrows();
-    }
-  
-    function goToSlide(i) {
-      const track = document.getElementById("carouselTrack");
-      if (!track) return;
-  
-      index = i;
-      track.style.transform = `translateX(-${index * 100}%)`;
-      updateDots();
-      updateArrows();
-    }
-
-    function updateArrows() {
-    const track = document.getElementById("carouselTrack");
-    const total = track.children.length;
-
-    document.querySelector(".prev").style.opacity =
-    index === 0 ? "0.4" : "1";
-
-    document.querySelector(".next").style.opacity =
-    index === total - 1 ? "0.4" : "1";
-    }
-
-
-    function updateCount() {
-    document.getElementById("carouselCount").textContent =
-    `${index + 1} / ${track.children.length}`;
-    }
-
-
-  
-    buildDots();
-  </script>
-  
+</div>
