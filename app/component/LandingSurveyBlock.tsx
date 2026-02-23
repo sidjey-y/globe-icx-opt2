@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 
 const QUESTIONS = [
   "What's one word that best describes how you're feeling right now?",
@@ -105,20 +104,16 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         <p style={{ color: DARK_BLUE, fontSize: 38, fontWeight: 700, margin: "0 0 20px 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif" }}>
           Your answer has been submitted.<br />Thanks for sharing!
         </p>
-        <Link
-          href="https://sites.google.com/globe.com.ph/icx/answer-icx-now"
-          target="_blank"
-          rel="noopener noreferrer"
+        <span
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 600,
             fontSize: '20px',
             color: DARK_BLUE,
-            textDecoration: 'none',
           }}
         >
           Answer iCX now!
-        </Link>
+        </span>
       </div>
     );
   }
