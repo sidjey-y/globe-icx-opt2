@@ -1,21 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from "react";
 import LandingSurveyBlock from "@/app/component/LandingSurveyBlock";
 
 import ResponsiveStage from "../component/ResponsiveStage";
 
 export default function LandingPage() {
-  const [isFocused, setIsFocused] = useState(false);
-
   return (
     <ResponsiveStage
       designWidth={1512}
       designHeight={800}
       fillViewport
-      background="#C8ECFF"
+      background="transparent"
     >
       <style jsx global>{`
         .icxNextButton {
@@ -107,82 +103,26 @@ export default function LandingPage() {
           box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(31, 52, 141, 0.15);
         }
 
-        .lighthouse-beam-pulse {
-          animation: lighthouse-beam-pulse 3.8s ease-in-out infinite;
-        }
-        @keyframes lighthouse-beam-pulse {
-          0%, 100% {
-            opacity: 0.5;
-            filter: brightness(0.82) drop-shadow(0 0 24px rgba(0, 160, 234, 0.5));
-          }
-          50% {
-            opacity: 1;
-            filter: brightness(1.22) drop-shadow(0 0 64px rgba(0, 160, 234, 0.9));
-          }
-        }
-
-        .lighthouse-beam-focused {
-          animation: none !important;
-          opacity: 1 !important;
-          filter: drop-shadow(0 0 24px rgba(0, 160, 234, 0.6)) !important;
-        }
-
-        .lighthouse-idle {
-          animation: lighthouse-idle 4.5s ease-in-out infinite;
-        }
-        @keyframes lighthouse-idle {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.08); }
-        }
-
-        /* Lantern glow on the lighthouse tower */
-        .lighthouse-glow {
-          animation: lighthouse-glow 5.2s ease-in-out infinite;
-        }
-        @keyframes lighthouse-glow {
-          0%, 100% { filter: brightness(1) drop-shadow(0 -8px 36px rgba(255, 220, 180, 0.3)); }
-          50% { filter: brightness(1.25) drop-shadow(0 -14px 56px rgba(255, 235, 200, 0.6)); }
-        }
-
-        .icx-logo-shine {
-          position: relative;
-          overflow: visible;
-        }
-        .icx-logo-shine::before {
-          content: "";
+        .landing-bg-gradient {
           position: absolute;
-          top: -24px;
-          left: -48px;
-          right: -48px;
-          bottom: -24px;
-          background: radial-gradient(
-            ellipse 130% 110% at 25% 100%,
-            rgba(200, 236, 255, 0.7),
-            transparent 60%
+          inset: 0;
+          z-index: 0;
+          background: linear-gradient(
+            180deg,
+            #2a3a8f 0%,
+            #3d5a9e 35%,
+            #5b8ec9 70%,
+            #8ab4dc 85%,
+            #b8cce8 100%
           );
+        }
+        .landing-bg-noise {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          opacity: 0.35;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
           pointer-events: none;
-          z-index: -1;
-          animation: icx-logo-beam-touch 2.5s ease-in-out infinite;
-        }
-        @keyframes icx-logo-beam-touch {
-          0%, 100% { opacity: 0.7; }
-          50% { opacity: 1; }
-        }
-        .icx-logo-beam-glow {
-          filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.08));
-          animation: icx-logo-beam-glow 2.5s ease-in-out infinite, icx-logo-breathe 3.5s ease-in-out infinite;
-        }
-        @keyframes icx-logo-beam-glow {
-          0%, 100% {
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.08));
-          }
-          50% {
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06)) drop-shadow(0 8px 28px rgba(0, 0, 0, 0.1));
-          }
-        }
-        @keyframes icx-logo-breathe {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.02); }
         }
       `}</style>
       <div
@@ -190,22 +130,15 @@ export default function LandingPage() {
           position: "relative",
           width: "1512px",
           height: "800px",
-          background: "#C8ECFF",
           margin: "0 auto",
           overflow: "hidden",
         }}
       >
-        {/* Layer 1: Blue Background */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "#C8ECFF",
-            zIndex: 0,
-          }}
-        />
+        {/* Blue gradient + grain texture background */}
+        <div className="landing-bg-gradient" />
+        <div className="landing-bg-noise" />
 
-        {/* Layer 2: Hero Elements (Lighthouse & Beam) - beam clipped and faded to screen */}
+        {/* Main Content (Text, Chatbox) - centered */}
         <div
           style={{
             position: "absolute",
@@ -213,115 +146,38 @@ export default function LandingPage() {
             top: 0,
             width: "100%",
             height: "100%",
-            zIndex: 1,
-            pointerEvents: "none",
-            overflow: "hidden",
+            zIndex: 10,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "24px",
           }}
         >
-          {/* Vector 1 (Beam) - fades out toward bottom so it stays scoped to screen */}
-          <div
-            className={`lighthouse-beam-pulse ${isFocused ? "lighthouse-beam-focused" : ""}`}
-            style={{
-              position: "absolute",
-              width: "1595px",
-              height: "1074px",
-              left: "152px",
-              top: "-103px",
-              zIndex: 1,
-              transition: "filter 0.3s ease, transform 0.3s ease",
-              maskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 55%, transparent 100%)",
-            }}
-          >
-            <Image
-              src="/images/Vector 1.png"
-              alt="Lighthouse Beam"
-              fill
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-
-          {/* Lighthouse */}
-          <div
-            className="lighthouse-idle lighthouse-glow"
-            style={{
-              position: "absolute",
-              width: "887px",
-              height: "624px",
-              left: "-101px",
-              top: "348px",
-              zIndex: 2,
-            }}
-          >
-            <Image
-              src="/images/lighthouse.png"
-              alt="Lighthouse"
-              fill
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-        </div>
-
-        {/* Layer 3: Main Content (Text, Nav, Chatbox) */}
-        <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%", zIndex: 10 }}>
-
-          {/* ICX Logo - top left, lit by lighthouse beam */}
-          <div
-            className="icx-logo-shine icx-logo-beam-glow"
-            style={{
-              position: "absolute",
-              left: "56px",
-              top: "24px",
-              zIndex: 20,
-            }}
-          >
-            <Image
-              src="/images/icx-logo.png"
-              alt="ICX - Internal Customer Experience"
-              width={467}
-              height={187}
-              style={{ width: "auto", height: "200px", objectFit: "contain", display: "block" }}
-              priority
-            />
-          </div>
-
           {/* Hi, Ka-Globe! */}
           <div
             style={{
-              position: "absolute",
-              width: "563px",
-              height: "60px",
-              left: "618px",
-              top: "152px",
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 700,
               fontSize: "64px",
               lineHeight: "96px",
               textAlign: "center",
-              color: "#1F2E8D",
+              color: "#FFFFFF",
             }}
           >
             Hi, Ka-Globe!
           </div>
 
-
-
           {/* Chatbox / Survey Container */}
           <div
             className="icxCardShell"
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
             style={{
-              position: "absolute",
               width: "920px",
               height: "380px",
-              left: "440px",
-              top: "295px",
             }}
           >
             <LandingSurveyBlock />
           </div>
-
         </div>
       </div>
     </ResponsiveStage>
