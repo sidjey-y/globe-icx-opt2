@@ -6,36 +6,63 @@ import LandingSurveyBlock from "@/app/component/LandingSurveyBlock";
 import ResponsiveStage from "../component/ResponsiveStage";
 
 const LANDING_BG =
-  "linear-gradient(180deg, #162a7c 0%, #182c7d 30%, #263a8c 60%, #2c4088 100%)";
+  "linear-gradient(135deg, #121d52 0%, #16235a 25%, #1c2a68 50%, #243574 75%, #2d4280 90%, #354d88 100%)";
 
 export default function LandingPage() {
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: LANDING_BG,
-        zIndex: 0,
-      }}
-    >
-      {/* Grain texture - overlay on blue gradient */}
+    <>
+      {/* SVG filter for grain - must be in DOM */}
+      <svg width="0" height="0" style={{ position: "absolute" }}>
+        <defs>
+          <filter id="landing-grain" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.75"
+              numOctaves="4"
+              stitchTiles="stitch"
+              result="noise"
+            />
+            <feColorMatrix
+              in="noise"
+              type="saturate"
+              values="0"
+              result="mono"
+            />
+            <feBlend in="SourceGraphic" in2="mono" mode="overlay" />
+          </filter>
+        </defs>
+      </svg>
       <div
-        aria-hidden
         style={{
-          position: "absolute",
+          position: "fixed",
           inset: 0,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23g)' fill='%23999'/%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "180px 180px",
-          opacity: 0.55,
-          mixBlendMode: "soft-light",
-          pointerEvents: "none",
+          zIndex: 0,
+          filter: "url(#landing-grain)",
         }}
-      />
-      <div style={{ position: "relative", zIndex: 1, width: "100%", height: "100%" }}>
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: LANDING_BG,
+          }}
+        />
+        {/* Subtle bottom-right lightening */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(ellipse 80% 80% at 100% 100%, rgba(50, 75, 110, 0.12) 0%, transparent 50%)",
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+      <div style={{ position: "fixed", inset: 0, zIndex: 1 }}>
         <ResponsiveStage
-          designWidth={1512}
-          designHeight={800}
+          designWidth={1920}
+          designHeight={1080}
           fillViewport
           background="transparent"
         >
@@ -129,31 +156,16 @@ export default function LandingPage() {
           box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(31, 52, 141, 0.15);
         }
 
-        .landing-bg-glow {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-          background: radial-gradient(
-            ellipse 80% 60% at 0% 100%,
-            rgba(160, 130, 200, 0.12) 0%,
-            rgba(160, 130, 200, 0.04) 40%,
-            transparent 70%
-          );
-          pointer-events: none;
-        }
       `}</style>
       <div
         style={{
           position: "relative",
-          width: "1512px",
-          height: "800px",
+          width: "1920px",
+          height: "1080px",
           margin: "0 auto",
           overflow: "hidden",
         }}
       >
-        {/* Bottom-left glow overlay */}
-        <div className="landing-bg-glow" />
-
         {/* Main Content (Text, Chatbox) - centered */}
         <div
           style={{
@@ -167,7 +179,7 @@ export default function LandingPage() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            gap: "36px",
+            gap: "28px",
           }}
         >
           {/* Hi, Ka-Globe! */}
@@ -175,8 +187,8 @@ export default function LandingPage() {
             style={{
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 700,
-              fontSize: "96px",
-              lineHeight: "120px",
+              fontSize: "120px",
+              lineHeight: "140px",
               textAlign: "center",
               color: "#FFFFFF",
             }}
@@ -188,8 +200,8 @@ export default function LandingPage() {
           <div
             className="icxCardShell"
             style={{
-              width: "1200px",
-              height: "520px",
+              width: "1720px",
+              height: "700px",
             }}
           >
             <LandingSurveyBlock />
@@ -198,6 +210,6 @@ export default function LandingPage() {
       </div>
         </ResponsiveStage>
       </div>
-    </div>
+    </>
   );
 }

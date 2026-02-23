@@ -101,14 +101,14 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           boxShadow: '0px 0px 5px 2px rgba(0, 0, 0, 0.3)',
         }}
       >
-        <p style={{ color: DARK_BLUE, fontSize: 38, fontWeight: 700, margin: "0 0 20px 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif" }}>
+        <p style={{ color: DARK_BLUE, fontSize: 44, fontWeight: 700, margin: "0 0 24px 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif" }}>
           Your answer has been submitted.<br />Thanks for sharing!
         </p>
         <span
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 600,
-            fontSize: '20px',
+            fontSize: '24px',
             color: DARK_BLUE,
           }}
         >
@@ -135,11 +135,11 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         {/* QUICK CHECK IN Label */}
         <div style={{
           position: 'absolute',
-          left: '55px',
-          top: '44px',
+          left: '45px',
+          top: '56px',
           fontFamily: "'Poppins', sans-serif",
           fontWeight: 500,
-          fontSize: '18px',
+          fontSize: '22px',
           letterSpacing: '0.05em',
           color: '#1F2E8D',
           opacity: 0.8
@@ -150,17 +150,17 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         <div
           style={{
             position: 'absolute',
-            top: '88px',
+            top: '110px',
             width: '100%',
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 700,
-            fontSize: '30px',
-            lineHeight: '44px',
+            fontSize: '36px',
+            lineHeight: '52px',
             textAlign: 'center',
             color: '#1F2E8D',
-            padding: '0 55px',
+            padding: '0 45px',
             boxSizing: 'border-box',
-            height: '48px' 
+            minHeight: '56px' 
           }}
         >
           {displayText}
@@ -183,17 +183,17 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
-            top: '170px',
-            width: '85%',
-            maxWidth: '1050px',
-            height: '200px',
+            top: '210px',
+            width: '100%',
+            maxWidth: '1580px',
+            height: '280px',
             background: 'rgba(255, 255, 255, 0.95)',
             boxShadow: 'inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(31, 52, 141, 0.12)',
             borderRadius: '24px',
             border: '2px solid rgba(31, 52, 141, 0.18)',
-            padding: '28px',
+            padding: '32px',
             fontFamily: "'Poppins', sans-serif",
-            fontSize: '22px',
+            fontSize: '26px',
             color: '#1F2E8D',
             resize: 'none',
             outline: 'none',
@@ -204,7 +204,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         <div style={{
           position: 'absolute',
           bottom: '48px',
-          right: '55px',
+          right: '45px',
           display: 'flex',
           gap: '20px'
         }}>
@@ -212,8 +212,8 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             type="button"
             onClick={() => setAnswer("")}
             style={{
-              width: '170px',
-              height: '54px',
+              width: '200px',
+              height: '62px',
               background: '#938E8E',
               borderRadius: '50px',
               fontFamily: "'Poppins', sans-serif",
@@ -234,11 +234,11 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               role="alert"
               style={{
                 position: 'absolute',
-                bottom: '120px',
+                bottom: '150px',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: '85%',
-                maxWidth: '1050px',
+                maxWidth: '1580px',
                 padding: '10px 16px',
                 borderRadius: '12px',
                 background: 'rgba(220, 53, 69, 0.12)',
@@ -284,8 +284,8 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             }}
             disabled={!canSubmit || submitting}
             style={{
-              width: '170px',
-              height: '54px',
+              width: '200px',
+              height: '62px',
               background: canSubmit ? '#1F2E8D' : '#938E8E',
               borderRadius: '50px',
               fontFamily: "'Poppins', sans-serif",
