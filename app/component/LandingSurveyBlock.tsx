@@ -31,12 +31,6 @@ function pickStableQuestionIndex(seed: string, length: number) {
 
 const DARK_BLUE = "#1F2E8D";
 
-const DownArrow = () => (
-  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke={DARK_BLUE} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 5v14M19 12l-7 7-7-7" />
-  </svg>
-);
-
 type LandingSurveyBlockProps = {
   onContinue?: () => void;
 };
@@ -110,34 +104,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         <p style={{ color: DARK_BLUE, fontSize: 30, fontWeight: 700, margin: "0 0 20px 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif" }}>
           Your answer has been submitted.<br />Thanks for sharing!
         </p>
-        <p style={{ color: DARK_BLUE, fontSize: 14, fontWeight: 500, margin: "16px 0 0 0", textAlign: 'center', fontFamily: "'Poppins', sans-serif", opacity: 0.9 }}>
-          Scroll down to continue
-        </p>
-        <button
-          type="button"
-          onClick={onContinue}
-          aria-label="Scroll down to continue"
-          className="landing-survey-down-arrow"
-          style={{
-            marginTop: '12px',
-            padding: '8px',
-            background: 'transparent',
-            border: 'none',
-            cursor: onContinue ? 'pointer' : 'default',
-            color: DARK_BLUE,
-          }}
-        >
-          <DownArrow />
-          <style jsx global>{`
-            .landing-survey-down-arrow {
-              animation: landing-survey-bounce-down 1.5s ease-in-out infinite;
-            }
-            @keyframes landing-survey-bounce-down {
-              0%, 100% { transform: translateY(0); }
-              50% { transform: translateY(6px); }
-            }
-          `}</style>
-        </button>
       </div>
     );
   }
