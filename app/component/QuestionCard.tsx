@@ -192,7 +192,8 @@ export default function QuestionCard() {
             style={{
               borderRadius: 14,
               padding: "16px 28px",
-              fontSize: 18,
+              fontSize: 24,
+              fontWeight: 700,
               border: "1px solid rgba(255,255,255,0.12)",
               background: "rgba(255,255,255,0.06)",
               color: "rgba(255,255,255,0.82)",
@@ -235,7 +236,8 @@ export default function QuestionCard() {
             style={{
               borderRadius: 14,
               padding: "16px 28px",
-              fontSize: 18,
+              fontSize: 24,
+              fontWeight: 700,
               border: "1px solid rgba(255,255,255,0.12)",
               background: submitted
                 ? "rgba(120, 255, 180, 0.25)"
