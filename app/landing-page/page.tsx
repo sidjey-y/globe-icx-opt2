@@ -285,8 +285,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 style={{
                   width: "min(100%, 190px)",
                   height: "56px",
-                  background:
-                    "linear-gradient(135deg, rgba(31,46,141,0.95) 0%, rgba(88,64,193,0.92) 55%, rgba(40,43,213,0.9) 100%)",
+                  background: "#1F2E8D",
                   borderRadius: "100px",
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
@@ -338,7 +337,9 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 style={{
                   width: "min(100%, 190px)",
                   height: "56px",
-                  background: canSubmit ? "#1F2E8D" : "#BDBDBD",
+                  background: canSubmit
+                    ? "linear-gradient(135deg, rgba(31,46,141,0.95) 0%, rgba(88,64,193,0.92) 55%, rgba(40,43,213,0.9) 100%)"
+                    : "#BDBDBD",
                   borderRadius: "100px",
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
@@ -346,8 +347,13 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                   color: "#FFFFFF",
                   border: "none",
                   cursor: canSubmit ? "pointer" : "not-allowed",
-                  transition: "opacity 0.2s, transform 0.1s",
+                  boxShadow: canSubmit ? "0 12px 30px rgba(31, 46, 141, 0.35)" : "none",
+                  filter: canSubmit ? "saturate(1.08) brightness(1.02)" : "none",
+                  transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease, filter 0.18s ease",
                 }}
+                onMouseDown={(e) => canSubmit && !submitting && (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")}
+                onMouseUp={(e) => (e.currentTarget.style.transform = "translateY(0) scale(1)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0) scale(1)")}
               >
                 {submitting ? "..." : "Submit"}
               </button>
@@ -464,9 +470,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 style={{
                   width: "min(100%, 190px)",
                   height: "56px",
-                  background: clearActive
-                    ? "linear-gradient(135deg, rgba(31,46,141,0.95) 0%, rgba(88,64,193,0.9) 55%, rgba(40,43,213,0.88) 100%)"
-                    : "#938E8E",
+                  background: clearActive ? "#1F2E8D" : "#938E8E",
                   borderRadius: "100px",
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
@@ -492,7 +496,9 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 style={{
                   width: "min(100%, 190px)",
                   height: "56px",
-                  background: canNext ? "#1F2E8D" : "#BDBDBD",
+                  background: canNext
+                    ? "linear-gradient(135deg, rgba(31,46,141,0.95) 0%, rgba(88,64,193,0.9) 55%, rgba(40,43,213,0.88) 100%)"
+                    : "#BDBDBD",
                   borderRadius: "100px",
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
@@ -500,8 +506,13 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                   color: "#FFFFFF",
                   border: "none",
                   cursor: canNext ? "pointer" : "not-allowed",
-                  transition: "opacity 0.2s, transform 0.1s",
+                  boxShadow: canNext ? "0 12px 30px rgba(31, 46, 141, 0.35)" : "none",
+                  filter: canNext ? "saturate(1.08) brightness(1.02)" : "none",
+                  transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease, filter 0.18s ease",
                 }}
+                onMouseDown={(e) => canNext && (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")}
+                onMouseUp={(e) => (e.currentTarget.style.transform = "translateY(0) scale(1)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0) scale(1)")}
               >
                 Next
               </button>
