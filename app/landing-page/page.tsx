@@ -67,6 +67,8 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
 
   const clearActive = answer.trim().length > 0;
 
+  const step1Title = "Wait! Before you go...";
+
   return (
     <div
       style={{
@@ -204,7 +206,17 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 color: "#1F2E8D",
               }}
             >
-              Wait! Before you go...
+              {step1Title.split("").map((ch, i) => (
+                <span
+                  key={i}
+                  style={{
+                    display: "inline-block",
+                    animation: `letterBounce 520ms cubic-bezier(0.2, 0.9, 0.2, 1) ${i * 28}ms 1 both`,
+                  }}
+                >
+                  {ch === " " ? "\u00A0" : ch}
+                </span>
+              ))}
             </div>
             <p
               style={{
@@ -233,7 +245,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                   padding: "0 25px",
                   fontFamily: "'Poppins', sans-serif",
                   fontSize: "20px",
-                  color: "#1F2E8D",
+                  color: "#2F3FA3",
                   outline: "none",
                   textAlign: "center",
                   boxSizing: "border-box",
@@ -271,7 +283,8 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 style={{
                   width: "min(100%, 190px)",
                   height: "56px",
-                  background: "linear-gradient(135deg, rgba(31,46,141,0.95) 0%, rgba(88,64,193,0.92) 55%, rgba(40,43,213,0.9) 100%)",
+                  background:
+                    "linear-gradient(135deg, rgba(31,46,141,0.95) 0%, rgba(88,64,193,0.92) 55%, rgba(40,43,213,0.9) 100%)",
                   borderRadius: "100px",
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
@@ -337,6 +350,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 {submitting ? "..." : "Submit"}
               </button>
             </div>
+
             <style jsx>{`
               @keyframes fadeIn {
                 from {
@@ -345,6 +359,20 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 }
                 to {
                   opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              @keyframes letterBounce {
+                0% {
+                  transform: translateY(0);
+                }
+                45% {
+                  transform: translateY(-8px);
+                }
+                70% {
+                  transform: translateY(2px);
+                }
+                100% {
                   transform: translateY(0);
                 }
               }
