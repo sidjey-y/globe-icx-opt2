@@ -2,22 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 const QUESTIONS = [
-  "What’s one word that best describes how you’re feeling right now?",
-  "What color best describes you today?",
-  "How are you doing right now?",
-  "If you can give your day a hashtag, what would it be?",
-  "How are things going for you today?",
-  "What song best describes your day?",
-  "What are you most looking forward to doing today?",
-  "Where's your desk today - home, office or field?",
-  "How's your day so far?",
-  "What's your favorite snack to share in a meeting?",
-  "As an employee, what makes you proud to be Ka-Globe?",
-  "As a customer, what makes you love Globe?",
   "How was your caffeine boost today?",
   "How did your meetings go today?",
   "How did your trip to work go today?",
-  "How was it like getting your food today? Any service wins or fails?",
+  "How was it like getting your food today?",
+  "Any service wins or fails?",
   "Any recent app experience that felt smooth or glitchy? How did it go?",
   "What vibe did your conversation with a teammate give you today?"
 ];
@@ -202,8 +191,8 @@ export default function QuestionCard() {
             }}
             style={{
               borderRadius: 14,
-              padding: "10px 14px",
-              fontSize: 14,
+              padding: "16px 28px",
+              fontSize: 18,
               border: "1px solid rgba(255,255,255,0.12)",
               background: "rgba(255,255,255,0.06)",
               color: "rgba(255,255,255,0.82)",
@@ -245,8 +234,8 @@ export default function QuestionCard() {
             }}
             style={{
               borderRadius: 14,
-              padding: "10px 16px",
-              fontSize: 14,
+              padding: "16px 28px",
+              fontSize: 18,
               border: "1px solid rgba(255,255,255,0.12)",
               background: submitted
                 ? "rgba(120, 255, 180, 0.25)"

@@ -5,22 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 
 
 const QUESTIONS = [
-  "What's one word that best describes how you're feeling right now?",
-  "What color best describes you today?",
-  "How are you doing right now?",
-  "If you can give your day a hashtag, what would it be?",
-  "How are things going for you today?",
-  "What song best describes your day?",
-  "What are you most looking forward to doing today?",
-  "Where's your desk today - home, office or field?",
-  "How's your day so far?",
-  "What's your favorite snack to share in a meeting?",
-  "As an employee, what makes you proud to be Ka-Globe?",
-  "As a customer, what makes you love Globe?",
   "How was your caffeine boost today?",
   "How did your meetings go today?",
   "How did your trip to work go today?",
-  "How was it like getting your food today? Any service wins or fails?",
+  "How was it like getting your food today?",
+  "Any service wins or fails?",
   "Any recent app experience that felt smooth or glitchy? How did it go?",
   "What vibe did your conversation with a teammate give you today?",
 ];
@@ -109,19 +98,20 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
     return (
       <div
         style={{
-          position: "absolute",
-          inset: 0,
           width: "100%",
           height: "100%",
+          minHeight: "300px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          paddingTop: "200px",
           background: "rgba(255, 255, 255, 0.2)",
           backdropFilter: "blur(5px)",
           borderRadius: "30px",
-          boxShadow: "0px 0px 5px 2px rgba(0, 0, 0, 0.3)",
           boxSizing: "border-box",
+          boxShadow: "none",
+          outline: "none",
         }}
       >
         <p
@@ -302,13 +292,13 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               type="button"
               onClick={() => setAnswer("")}
               style={{
-                width: "200px",
-                height: "62px",
+                width: "280px",
+                height: "76px",
                 background: "#938E8E",
                 borderRadius: "50px",
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 500,
-                fontSize: "18px",
+                fontSize: "20px",
                 color: "#FFFFFF",
                 border: "none",
                 cursor: "pointer",
@@ -351,13 +341,13 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               }}
               disabled={!canSubmit || submitting}
               style={{
-                width: "200px",
-                height: "62px",
+                width: "280px",
+                height: "76px",
                 background: canSubmit ? "#1F2E8D" : "#938E8E",
                 borderRadius: "50px",
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 500,
-                fontSize: "18px",
+                fontSize: "20px",
                 color: "#FFFFFF",
                 border: "none",
                 cursor: canSubmit ? "pointer" : "not-allowed",
