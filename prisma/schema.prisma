@@ -30,6 +30,7 @@ model Answer {
   questionIndex Int
   questionText  String
   answerText    String
+  employeeInfo  String?
   createdAt     DateTime @default(now())
 
   @@index([createdAt])
