@@ -1,8 +1,6 @@
 "use client";
 
-
 import { useEffect, useMemo, useState } from "react";
-
 
 const QUESTIONS = [
   "How was your caffeine boost today?",
@@ -13,21 +11,17 @@ const QUESTIONS = [
   "What vibe did your conversation with a teammate give you today?",
 ];
 
-
 function pickStableQuestionIndex(seed: string, length: number) {
   let h = 2166136261;
   for (let i = 0; i < seed.length; i++) h = Math.imul(h ^ seed.charCodeAt(i), 16777619);
   return Math.abs(h) % length;
 }
 
-
 const DARK_BLUE = "#1F2E8D";
-
 
 type LandingSurveyBlockProps = {
   onContinue?: () => void;
 };
-
 
 export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockProps = {}) {
   const [answer, setAnswer] = useState("");
@@ -38,29 +32,23 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
   const [seed, setSeed] = useState<string | null>(null);
   const [displayText, setDisplayText] = useState("");
 
-
   useEffect(() => {
     setMounted(true);
     setSeed(crypto.randomUUID());
   }, []);
-
 
   const questionIndex = useMemo(() => {
     if (!seed) return null;
     return pickStableQuestionIndex(seed, QUESTIONS.length);
   }, [seed]);
 
-
   const question = useMemo(() => {
     if (questionIndex == null) return "";
     return QUESTIONS[questionIndex];
   }, [questionIndex]);
 
-
   useEffect(() => {
     if (!question) return;
-
-
     setDisplayText("");
     let i = 0;
     const interval = setInterval(() => {
@@ -68,11 +56,8 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
       i++;
       if (i >= question.length) clearInterval(interval);
     }, 40);
-
-
     return () => clearInterval(interval);
   }, [question]);
-
 
   useEffect(() => {
     if (!mounted) return;
@@ -80,18 +65,12 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
     setSubmitted(false);
   }, [question, mounted]);
 
-
   const canSubmit = !!seed && answer.trim().length > 0 && answer.trim().length <= 200;
-
 
   if (!mounted) return null;
 
-
-  // Responsive textarea height that "feels right" across screen sizes
-  // (still works perfectly with your proportional scaling parent)
   const textareaHeight = "clamp(160px, 38vh, 320px)";
-  const textareaTop = "210px"; // stays safely below the question area
-
+  const textareaTop = "210px";
 
   if (submitted) {
     return (
@@ -125,24 +104,58 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         >
           Thanks for sharing!
         </p>
+
         <span
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 600,
             fontSize: "24px",
             color: DARK_BLUE,
+            textAlign: "center",
           }}
         >
           Answer iCX now!
         </span>
+
+        <div
+          aria-hidden="true"
+          style={{
+            marginTop: "14px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 600,
+            color: DARK_BLUE,
+            fontSize: "clamp(18px, 2.2vh, 24px)",
+            lineHeight: 1,
+            opacity: 0.95,
+            userSelect: "none",
+            animation: "icxArrowBounce 1.15s ease-in-out infinite",
+          }}
+        >
+          ↓
+        </div>
+
+        <style jsx>{`
+          @keyframes icxArrowBounce {
+            0% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(8px);
+            }
+            100% {
+              transform: translateY(0);
+            }
+          }
+        `}</style>
       </div>
     );
   }
 
-
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {/* Outer Card Background */}
       <div
         style={{
           position: "absolute",
@@ -152,7 +165,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           borderRadius: "30px",
         }}
       />
-
 
       <div style={{ position: "relative", width: "100%", height: "100%", zIndex: 1 }}>
         <div
@@ -184,21 +196,13 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           />
           <style jsx>{`
             @keyframes blink {
-              0% {
-                opacity: 1;
-              }
-              50% {
-                opacity: 0;
-              }
-              100% {
-                opacity: 1;
-              }
+              0% { opacity: 1; }
+              50% { opacity: 0; }
+              100% { opacity: 1; }
             }
           `}</style>
         </div>
 
-
-        {/* ✅ Textarea + Buttons grouped */}
         <div
           style={{
             position: "absolute",
@@ -211,15 +215,12 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
           }}
         >
           <textarea
-            className="landing-survey-textarea"
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             placeholder="Type here..."
             style={{
               width: "100%",
               height: textareaHeight,
-
-
               background: "rgba(255, 255, 255, 0.95)",
               boxShadow:
                 "inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(31, 52, 141, 0.12)",
@@ -236,7 +237,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               display: "block",
             }}
           />
-
 
           {submitError && (
             <div
@@ -258,7 +258,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               {submitError}
             </div>
           )}
-
 
           <div
             style={{
@@ -287,7 +286,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             >
               Clear
             </button>
-
 
             <button
               type="button"
@@ -343,4 +341,3 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
     </div>
   );
 }
-
