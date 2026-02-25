@@ -158,23 +158,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
 
 
       <div style={{ position: "relative", width: "100%", height: "100%", zIndex: 1 }}>
-        {/* QUICK CHECK IN */}
-        <div
-          style={{
-            position: "absolute",
-            left: "45px",
-            top: "46px",
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 500,
-            fontSize: "22px",
-            letterSpacing: "0.05em",
-            color: "#1F2E8D",
-            opacity: 0.8,
-            whiteSpace: "nowrap",
-          }}
-        >
-          QUICK CHECK IN
-        </div>
         <div
           style={{
             position: "absolute",
