@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     const isNoTable = message.includes("does not exist") || message.includes("relation");
     const dev = process.env.NODE_ENV !== "production";
     let userMessage = "Server error";
-    if (isDbConfig) userMessage = "Database not configured. Set DATABASE_URL and DIRECT_URL in .env and restart the server.";
+    if (isDbConfig) userMessage = "Database not configured. Set DATABASE_URL in .env and restart the server.";
     else if (isAuth) userMessage = "Database login failed. Check username and password in .env (and special characters in password must be URL-encoded).";
     else if (isConnection) userMessage = "Cannot connect to database. Is PostgreSQL running? Is the host/port correct in .env?";
     else if (isNoTable) userMessage = "Database tables missing. Run: npx prisma migrate deploy";

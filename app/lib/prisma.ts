@@ -4,13 +4,15 @@ const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
 function createPrisma() {
   const url = process.env.DATABASE_URL;
-  const directUrl = process.env.DIRECT_URL;
-  if (typeof url !== "string" || !url.trim() || typeof directUrl !== "string" || !directUrl.trim()) {
+  if (typeof url !== "string" || !url.trim()) {
     throw new Error(
-      "Prisma: DATABASE_URL and DIRECT_URL must be set in .env (valid PostgreSQL connection strings)."
+      "Prisma: DATABASE_URL must be set in .env (valid PostgreSQL connection string)."
     );
   }
-  return new PrismaClient({ log: ["error", "warn"] });
+  return new PrismaClient({
+    datasourceUrl: url,
+    log: ["error", "warn"],
+  });
 }
 
 export const prisma =
