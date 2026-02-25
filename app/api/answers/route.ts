@@ -11,6 +11,7 @@ export async function POST(req: Request) {
     const questionIndex = Number(body?.questionIndex);
     const questionText = String(body?.questionText ?? "").trim();
     const answerText = String(body?.answerText ?? "").trim();
+    const employeeInfo = String(body?.employeeInfo ?? "").trim();
 
     if (!seed) return NextResponse.json({ error: "Missing seed" }, { status: 400 });
     if (!Number.isFinite(questionIndex)) return NextResponse.json({ error: "Invalid questionIndex" }, { status: 400 });
@@ -27,6 +28,7 @@ export async function POST(req: Request) {
         questionIndex,
         questionText,
         answerText,
+        employeeInfo: employeeInfo || null,
       },
       select: { id: true, createdAt: true },
     });
