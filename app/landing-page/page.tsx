@@ -2,14 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const QUESTIONS = [
-  "How was your caffeine boost today?",
-  "How did your meetings go today?",
-  "How did your trip to work go today?",
-  "How was it like getting your food today? Any service wins or fails?",
-  "Any recent app experience that felt smooth or glitchy? How did it go?",
-  "What vibe did your conversation with a teammate give you today?",
-];
+const QUESTIONS = ["First off, how BLUE has your day been so far?"];
 
 function pickStableQuestionIndex(seed: string, length: number) {
   let h = 2166136261;
@@ -155,189 +148,198 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
   }
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+    <>
+      {/* Stable Background Layer */}
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           inset: 0,
-          background: "rgba(255, 255, 255, 0.2)",
-          boxShadow: "0px 0px 5px 2px rgba(0, 0, 0, 0.3)",
-          borderRadius: "30px",
+          backgroundImage: "url('/finalBG.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+          zIndex: -1,
         }}
       />
 
-      <div style={{ position: "relative", width: "100%", height: "100%", zIndex: 1 }}>
+      {/* Main Scrollable Content */}
+      <div
+        style={{
+          minHeight: "100vh",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          paddingTop: "max(240px, 28vh)",
+          paddingBottom: "100px",
+          boxSizing: "border-box",
+          overflowY: "auto",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <div
           style={{
-            position: "absolute",
-            top: "92px",
-            left: "45px",
-            right: "45px",
-            height: "96px",
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 2,
-            overflow: "hidden",
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 700,
-            fontSize: "36px",
-            lineHeight: "48px",
-            textAlign: "center",
-            color: "#1F2E8D",
-          }}
-        >
-          {displayText}
-          <span
-            style={{
-              borderRight: "2px solid #1F2E8D",
-              marginLeft: "2px",
-              animation: "blink 0.7s infinite",
-            }}
-          />
-          <style jsx>{`
-            @keyframes blink {
-              0% { opacity: 1; }
-              50% { opacity: 0; }
-              100% { opacity: 1; }
-            }
-          `}</style>
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
-            top: textareaTop,
-            width: "calc(100% - 90px)",
-            maxWidth: "calc(1580px - 90px)",
+            width: "min(92%, 1100px)",
+            background: "#FFFFFF",
+            borderRadius: "50px",
+            boxShadow: "0px 15px 50px rgba(0, 0, 0, 0.22)", // Slightly deeper shadow for the solid card
+            padding: "clamp(30px, 5vw, 50px) clamp(30px, 7vw, 70px)",
+            position: "relative",
             boxSizing: "border-box",
+            marginBottom: "40px",
           }}
         >
-          <textarea
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-            placeholder="Type here..."
+          <div
             style={{
-              width: "100%",
-              height: textareaHeight,
-              background: "rgba(255, 255, 255, 0.95)",
-              boxShadow:
-                "inset 0px 2px 6px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(31, 52, 141, 0.12)",
-              borderRadius: "24px",
-              border: "2px solid rgba(31, 52, 141, 0.18)",
-              padding: "32px",
+              marginBottom: "30px",
               fontFamily: "'Poppins', sans-serif",
-              fontSize: "26px",
-              color: "#1F2E8D",
-              resize: "none",
-              outline: "none",
+              fontWeight: 800,
+              fontSize: "clamp(24px, 3vw, 30px)",
+              lineHeight: "1.3",
               textAlign: "center",
-              boxSizing: "border-box",
-              display: "block",
+              color: "#1F2E8D",
             }}
-          />
-
-          {submitError && (
-            <div
-              role="alert"
+          >
+            {displayText}
+            <span
               style={{
-                marginTop: "12px",
+                borderRight: "2px solid #1F2E8D",
+                marginLeft: "2px",
+                animation: "blink 0.7s infinite",
+              }}
+            />
+            <style jsx>{`
+              @keyframes blink {
+                0% { opacity: 1; }
+                50% { opacity: 0; }
+                100% { opacity: 1; }
+              }
+            `}</style>
+          </div>
+
+          <div style={{ width: "100%" }}>
+            <textarea
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              placeholder="Type here..."
+              style={{
                 width: "100%",
-                padding: "10px 16px",
-                borderRadius: "12px",
-                background: "rgba(220, 53, 69, 0.12)",
-                border: "1px solid rgba(220, 53, 69, 0.4)",
-                color: "#1F2E8D",
-                fontSize: "14px",
+                height: "clamp(120px, 18vh, 160px)", // Slightly more compact textarea
+                background: "#F2F2F5",
+                borderRadius: "32px",
+                border: "none",
+                padding: "25px",
                 fontFamily: "'Poppins', sans-serif",
+                fontSize: "clamp(18px, 2.5vw, 24px)",
+                color: "#1F2E8D",
+                resize: "none",
+                outline: "none",
                 textAlign: "center",
                 boxSizing: "border-box",
               }}
-            >
-              {submitError}
-            </div>
-          )}
+            />
 
-          <div
-            style={{
-              marginTop: submitError ? "12px" : "14px",
-              display: "flex",
-              justifyContent: "flex-end",
-              gap: "20px",
-            }}
-          >
-            <button
-              type="button"
-              onClick={() => setAnswer("")}
+            {submitError && (
+              <div
+                role="alert"
+                style={{
+                  marginTop: "16px",
+                  width: "100%",
+                  color: "#DC3545",
+                  fontSize: "14px",
+                  fontFamily: "'Poppins', sans-serif",
+                  textAlign: "center",
+                }}
+              >
+                {submitError}
+              </div>
+            )}
+
+            <div
               style={{
-                width: "280px",
-                height: "76px",
-                background: "#938E8E",
-                borderRadius: "50px",
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 700,
-                fontSize: "24px",
-                color: "#FFFFFF",
-                border: "none",
-                cursor: "pointer",
-                transition: "opacity 0.2s",
+                marginTop: "30px",
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "clamp(10px, 2vw, 20px)",
+                flexWrap: "wrap",
               }}
             >
-              Clear
-            </button>
+              <button
+                type="button"
+                onClick={() => setAnswer("")}
+                style={{
+                  width: "min(100%, 190px)",
+                  height: "56px",
+                  background: "#938E8E",
+                  borderRadius: "100px",
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  color: "#FFFFFF",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "opacity 0.2s, transform 0.1s",
+                }}
+                onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.96)")}
+                onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              >
+                Clear
+              </button>
 
-            <button
-              type="button"
-              onClick={async () => {
-                if (!canSubmit || submitting) return;
-                setSubmitting(true);
-                setSubmitError(null);
-                try {
-                  const res = await fetch("/api/answers", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      seed,
-                      questionIndex,
-                      questionText: question,
-                      answerText: answer.trim(),
-                    }),
-                  });
-                  const data = await res.json().catch(() => ({}));
-                  if (res.ok) {
-                    setSubmitted(true);
-                  } else {
-                    setSubmitError(data?.error ?? "Failed to save. Please try again.");
+              <button
+                type="button"
+                onClick={async () => {
+                  if (!canSubmit || submitting) return;
+                  setSubmitting(true);
+                  setSubmitError(null);
+                  try {
+                    const res = await fetch("/api/answers", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        seed,
+                        questionIndex,
+                        questionText: question,
+                        answerText: answer.trim(),
+                      }),
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (res.ok) {
+                      setSubmitted(true);
+                    } else {
+                      setSubmitError(data?.error ?? "Failed to save. Please try again.");
+                    }
+                  } catch (e) {
+                    console.error(e);
+                    setSubmitError("Network error. Please try again.");
+                  } finally {
+                    setSubmitting(false);
                   }
-                } catch (e) {
-                  console.error(e);
-                  setSubmitError("Network error. Please try again.");
-                } finally {
-                  setSubmitting(false);
-                }
-              }}
-              disabled={!canSubmit || submitting}
-              style={{
-                width: "280px",
-                height: "76px",
-                background: canSubmit ? "#1F2E8D" : "#938E8E",
-                borderRadius: "50px",
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 700,
-                fontSize: "24px",
-                color: "#FFFFFF",
-                border: "none",
-                cursor: canSubmit ? "pointer" : "not-allowed",
-                opacity: canSubmit ? 1 : 0.7,
-                transition: "background 0.2s",
-              }}
-            >
-              {submitting ? "..." : "Submit"}
-            </button>
+                }}
+                disabled={!canSubmit || submitting}
+                style={{
+                  width: "min(100%, 190px)",
+                  height: "56px",
+                  background: canSubmit ? "#1F2E8D" : "#BDBDBD",
+                  borderRadius: "100px",
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  color: "#FFFFFF",
+                  border: "none",
+                  cursor: canSubmit ? "pointer" : "not-allowed",
+                  transition: "opacity 0.2s, transform 0.1s",
+                }}
+                onMouseDown={(e) => canSubmit && (e.currentTarget.style.transform = "scale(0.96)")}
+                onMouseUp={(e) => canSubmit && (e.currentTarget.style.transform = "scale(1)")}
+              >
+                {submitting ? "..." : "Submit"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
