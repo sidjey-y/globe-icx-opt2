@@ -65,281 +65,293 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
   const textareaHeight = "clamp(160px, 38vh, 320px)";
   const textareaTop = "210px";
 
-  if (submitted) {
-    return (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          minHeight: "300px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          paddingTop: "280px",
-          background: "rgba(255, 255, 255, 0.2)",
-          backdropFilter: "blur(5px)",
-          borderRadius: "30px",
-          boxSizing: "border-box",
-          boxShadow: "none",
-          outline: "none",
-        }}
-      >
-        <p
-          style={{
-            color: DARK_BLUE,
-            fontSize: 56,
-            fontWeight: 700,
-            margin: "0 0 24px 0",
-            textAlign: "center",
-            fontFamily: "'Poppins', sans-serif",
-          }}
-        >
-          Thanks for sharing!
-        </p>
-
-        <span
-          style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 600,
-            fontSize: "24px",
-            color: DARK_BLUE,
-            textAlign: "center",
-          }}
-        >
-          Answer iCX now!
-        </span>
-
-        <div
-          aria-hidden="true"
-          style={{
-            marginTop: "14px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 600,
-            color: DARK_BLUE,
-            fontSize: "clamp(18px, 2.2vh, 24px)",
-            lineHeight: 1,
-            opacity: 0.95,
-            userSelect: "none",
-            animation: "icxArrowBounce 1.15s ease-in-out infinite",
-          }}
-        >
-          ↓
-        </div>
-
-        <style jsx>{`
-          @keyframes icxArrowBounce {
-            0% {
-              transform: translateY(0);
-            }
-            50% {
-              transform: translateY(8px);
-            }
-            100% {
-              transform: translateY(0);
-            }
-          }
-        `}</style>
-      </div>
-    );
-  }
-
   return (
-    <>
-      {/* Stable Background Layer */}
+    <div
+      style={{
+        minHeight: "100vh",
+        width: "100%",
+        backgroundImage: "url('/finalBG.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "top center",
+        backgroundRepeat: "no-repeat",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        paddingTop: "max(280px, 30vh)",
+        paddingBottom: "100px",
+        boxSizing: "border-box",
+        overflowY: "auto",
+        position: "relative",
+      }}
+    >
       <div
         style={{
-          position: "fixed",
-          inset: 0,
-          backgroundImage: "url('/finalBG.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "top center",
-          backgroundRepeat: "no-repeat",
-          zIndex: -1,
-        }}
-      />
-
-      {/* Main Scrollable Content */}
-      <div
-        style={{
-          minHeight: "100vh",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          paddingTop: "max(240px, 28vh)",
-          paddingBottom: "100px",
-          boxSizing: "border-box",
-          overflowY: "auto",
+          width: "min(92%, 1100px)",
+          background: "#FFFFFF",
+          borderRadius: "50px",
+          boxShadow: "0px 15px 50px rgba(0, 0, 0, 0.22)",
+          padding: "clamp(40px, 6vw, 80px) clamp(30px, 7vw, 100px)",
           position: "relative",
+          boxSizing: "border-box",
+          marginBottom: "40px",
+          textAlign: "center",
           zIndex: 1,
         }}
       >
-        <div
-          style={{
-            width: "min(92%, 1100px)",
-            background: "#FFFFFF",
-            borderRadius: "50px",
-            boxShadow: "0px 15px 50px rgba(0, 0, 0, 0.22)", // Slightly deeper shadow for the solid card
-            padding: "clamp(30px, 5vw, 50px) clamp(30px, 7vw, 70px)",
-            position: "relative",
-            boxSizing: "border-box",
-            marginBottom: "40px",
-          }}
-        >
+        {submitted ? (
           <div
             style={{
-              marginBottom: "30px",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(24px, 3vw, 30px)",
-              lineHeight: "1.3",
-              textAlign: "center",
-              color: "#1F2E8D",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: "350px",
+              animation: "fadeIn 0.5s ease-out",
             }}
           >
-            {displayText}
-            <span
+            <h2
               style={{
-                borderRight: "2px solid #1F2E8D",
-                marginLeft: "2px",
-                animation: "blink 0.7s infinite",
-              }}
-            />
-            <style jsx>{`
-              @keyframes blink {
-                0% { opacity: 1; }
-                50% { opacity: 0; }
-                100% { opacity: 1; }
-              }
-            `}</style>
-          </div>
-
-          <div style={{ width: "100%" }}>
-            <textarea
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              placeholder="Type here..."
-              style={{
-                width: "100%",
-                height: "clamp(120px, 18vh, 160px)", // Slightly more compact textarea
-                background: "#F2F2F5",
-                borderRadius: "32px",
-                border: "none",
-                padding: "25px",
+                color: DARK_BLUE,
+                fontSize: "clamp(32px, 5vw, 64px)",
+                fontWeight: 800,
+                margin: "0 0 20px 0",
                 fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(18px, 2.5vw, 24px)",
-                color: "#1F2E8D",
-                resize: "none",
-                outline: "none",
-                textAlign: "center",
-                boxSizing: "border-box",
               }}
-            />
-
-            {submitError && (
-              <div
-                role="alert"
-                style={{
-                  marginTop: "16px",
-                  width: "100%",
-                  color: "#DC3545",
-                  fontSize: "14px",
-                  fontFamily: "'Poppins', sans-serif",
-                  textAlign: "center",
-                }}
-              >
-                {submitError}
-              </div>
-            )}
+            >
+              Thank you for answering!
+            </h2>
+            <p
+              style={{
+                color: "#666",
+                fontSize: "clamp(18px, 2.5vw, 24px)",
+                fontFamily: "'Poppins', sans-serif",
+                marginBottom: "40px",
+              }}
+            >
+              Your feedback helps us make your experience even better.
+            </p>
 
             <div
               style={{
-                marginTop: "30px",
                 display: "flex",
-                justifyContent: "flex-end",
-                gap: "clamp(10px, 2vw, 20px)",
-                flexWrap: "wrap",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
               }}
             >
-              <button
-                type="button"
-                onClick={() => setAnswer("")}
+              <span
                 style={{
-                  width: "min(100%, 190px)",
-                  height: "56px",
-                  background: "#938E8E",
-                  borderRadius: "100px",
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
-                  fontSize: "18px",
-                  color: "#FFFFFF",
-                  border: "none",
-                  cursor: "pointer",
-                  transition: "opacity 0.2s, transform 0.1s",
+                  fontSize: "28px",
+                  color: DARK_BLUE,
                 }}
-                onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.96)")}
-                onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
               >
-                Clear
-              </button>
-
-              <button
-                type="button"
-                onClick={async () => {
-                  if (!canSubmit || submitting) return;
-                  setSubmitting(true);
-                  setSubmitError(null);
-                  try {
-                    const res = await fetch("/api/answers", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        seed,
-                        questionIndex,
-                        questionText: question,
-                        answerText: answer.trim(),
-                      }),
-                    });
-                    const data = await res.json().catch(() => ({}));
-                    if (res.ok) {
-                      setSubmitted(true);
-                    } else {
-                      setSubmitError(data?.error ?? "Failed to save. Please try again.");
-                    }
-                  } catch (e) {
-                    console.error(e);
-                    setSubmitError("Network error. Please try again.");
-                  } finally {
-                    setSubmitting(false);
-                  }
-                }}
-                disabled={!canSubmit || submitting}
+                Answer iCX now!
+              </span>
+              <div
                 style={{
-                  width: "min(100%, 190px)",
-                  height: "56px",
-                  background: canSubmit ? "#1F2E8D" : "#BDBDBD",
-                  borderRadius: "100px",
-                  fontFamily: "'Poppins', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "18px",
-                  color: "#FFFFFF",
-                  border: "none",
-                  cursor: canSubmit ? "pointer" : "not-allowed",
-                  transition: "opacity 0.2s, transform 0.1s",
+                  fontSize: "48px",
+                  color: DARK_BLUE,
+                  animation: "bounce 1.5s infinite",
+                  fontWeight: 900,
                 }}
-                onMouseDown={(e) => canSubmit && (e.currentTarget.style.transform = "scale(0.96)")}
-                onMouseUp={(e) => canSubmit && (e.currentTarget.style.transform = "scale(1)")}
               >
-                {submitting ? "..." : "Submit"}
-              </button>
+                ↓
+              </div>
             </div>
+
+            <style jsx>{`
+              @keyframes fadeIn {
+                from {
+                  opacity: 0;
+                  transform: translateY(10px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              @keyframes bounce {
+                0%,
+                20%,
+                50%,
+                80%,
+                100% {
+                  transform: translateY(0);
+                }
+                40% {
+                  transform: translateY(-20px);
+                }
+                60% {
+                  transform: translateY(-10px);
+                }
+              }
+            `}</style>
           </div>
-        </div>
+        ) : (
+          <>
+            <div
+              style={{
+                marginBottom: "30px",
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 800,
+                fontSize: "clamp(24px, 3vw, 30px)",
+                lineHeight: "1.3",
+                textAlign: "center",
+                color: "#1F2E8D",
+              }}
+            >
+              {displayText}
+              <span
+                style={{
+                  borderRight: "2px solid #1F2E8D",
+                  marginLeft: "2px",
+                  animation: "blink 0.7s infinite",
+                }}
+              />
+              <style jsx>{`
+                  @keyframes blink {
+                    0% {
+                      opacity: 1;
+                    }
+                    50% {
+                      opacity: 0;
+                    }
+                    100% {
+                      opacity: 1;
+                    }
+                  }
+                `}</style>
+            </div>
+
+            <div style={{ width: "100%" }}>
+              <textarea
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                placeholder="Type here..."
+                style={{
+                  width: "100%",
+                  height: "clamp(120px, 18vh, 160px)",
+                  background: "#F2F2F5",
+                  borderRadius: "32px",
+                  border: "none",
+                  padding: "25px",
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "clamp(18px, 2.5vw, 24px)",
+                  color: "#1F2E8D",
+                  resize: "none",
+                  outline: "none",
+                  textAlign: "center",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              {submitError && (
+                <div
+                  role="alert"
+                  style={{
+                    marginTop: "16px",
+                    width: "100%",
+                    color: "#DC3545",
+                    fontSize: "14px",
+                    fontFamily: "'Poppins', sans-serif",
+                    textAlign: "center",
+                  }}
+                >
+                  {submitError}
+                </div>
+              )}
+
+              <div
+                style={{
+                  marginTop: "30px",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: "clamp(10px, 2vw, 20px)",
+                  flexWrap: "wrap",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setAnswer("")}
+                  style={{
+                    width: "min(100%, 190px)",
+                    height: "56px",
+                    background: "#938E8E",
+                    borderRadius: "100px",
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "18px",
+                    color: "#FFFFFF",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "opacity 0.2s, transform 0.1s",
+                  }}
+                  onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.96)")}
+                  onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                >
+                  Clear
+                </button>
+
+                <button
+                  type="button"
+                  onClick={async () => {
+                    if (!canSubmit || submitting) return;
+                    setSubmitting(true);
+                    setSubmitError(null);
+                    try {
+                      const res = await fetch("/api/answers", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          seed,
+                          questionIndex,
+                          questionText: question,
+                          answerText: answer.trim(),
+                        }),
+                      });
+                      const data = await res.json().catch(() => ({}));
+                      if (res.ok) {
+                        setSubmitted(true);
+                      } else {
+                        setSubmitError(data?.error ?? "Failed to save. Please try again.");
+                      }
+                    } catch (e) {
+                      console.error(e);
+                      setSubmitError("Network error. Please try again.");
+                    } finally {
+                      setSubmitting(false);
+                    }
+                  }}
+                  disabled={!canSubmit || submitting}
+                  style={{
+                    width: "min(100%, 190px)",
+                    height: "56px",
+                    background: canSubmit ? "#1F2E8D" : "#BDBDBD",
+                    borderRadius: "100px",
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "18px",
+                    color: "#FFFFFF",
+                    border: "none",
+                    cursor: canSubmit ? "pointer" : "not-allowed",
+                    transition: "opacity 0.2s, transform 0.1s",
+                  }}
+                  onMouseDown={(e) =>
+                    canSubmit && (e.currentTarget.style.transform = "scale(0.96)")
+                  }
+                  onMouseUp={(e) =>
+                    canSubmit && (e.currentTarget.style.transform = "scale(1)")
+                  }
+                >
+                  {submitting ? "..." : "Submit"}
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
-    </>
+    </div>
   );
 }
