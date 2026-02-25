@@ -113,15 +113,13 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
         <p
           style={{
             color: DARK_BLUE,
-            fontSize: 44,
+            fontSize: 56,
             fontWeight: 700,
             margin: "40px 0 24px 0",
             textAlign: "center",
             fontFamily: "'Poppins', sans-serif",
           }}
         >
-          Your answer has been submitted.
-          <br />
           Thanks for sharing!
         </p>
         <span
