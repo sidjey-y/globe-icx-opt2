@@ -230,7 +230,9 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             </p>
 
             <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "20px" }}>
+              <style>{`.employee-id-input::placeholder { color: #6b6b80; opacity: 1; }`}</style>
               <input
+                className="employee-id-input"
                 type="text"
                 value={employeeInfo}
                 onChange={(e) => setEmployeeInfo(e.target.value)}
