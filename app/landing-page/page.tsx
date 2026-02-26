@@ -218,7 +218,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                   color: STYLE.color.primary,
                 }}
               >
-                Click below!
+                Answer ICX Now!
               </span>
 
               <div
