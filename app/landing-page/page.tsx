@@ -10,7 +10,6 @@ function pickStableQuestionIndex(seed: string, length: number) {
   return Math.abs(h) % length;
 }
 
-// Design tokens — consistent across all steps
 const STYLE = {
   font: "'Poppins', sans-serif",
   color: {
@@ -148,55 +147,43 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             animation: stepContentFade 0.35s ease-out;
           }
           @keyframes stepContentFade {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-          }
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
-          }
-          .wait-before-go.survey-step-content {
-            animation: waitBeforeGoIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-          }
-          @keyframes waitBeforeGoIn {
             from {
               opacity: 0;
-              transform: translateY(20px) scale(0.97);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0) scale(1);
-            }
-          }
-          .wait-item {
-            opacity: 0;
-            animation: waitItemIn 0.45s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
-          }
-          .wait-item-1 { animation-delay: 0.08s; }
-          .wait-item-2 { animation-delay: 0.18s; }
-          .wait-item-3 { animation-delay: 0.28s; }
-          .wait-item-4 { animation-delay: 0.38s; }
-          @keyframes waitItemIn {
-            from {
-              opacity: 0;
-              transform: translateY(14px);
+              transform: translateY(8px);
             }
             to {
               opacity: 1;
               transform: translateY(0);
             }
           }
+          @keyframes blink {
+            0% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+              transform: translateY(0);
+            }
+            40% {
+              transform: translateY(-20px);
+            }
+            60% {
+              transform: translateY(-10px);
+            }
+          }
         `}</style>
+
         <div
           style={{
             flex: 1,
@@ -208,315 +195,54 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             position: "relative",
           }}
         >
-        {surveyStep === 2 ? (
-          <div
-            className="survey-step-content"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-              width: "100%",
-              flex: 1,
-              minHeight: 0,
-            }}
-          >
-            <span
-              style={{
-                fontFamily: STYLE.font,
-                fontWeight: STYLE.fontWeight.title,
-                fontSize: "clamp(32px, 5.5vw, 56px)",
-                lineHeight: "1.2",
-                color: STYLE.color.primary,
-              }}
-            >
-              Answer iCX Now!
-            </span>
-
+          {surveyStep === 2 ? (
             <div
+              className="survey-step-content"
               style={{
-                fontSize: "clamp(28px, 4vw, 40px)",
-                color: STYLE.color.primary,
-                animation: "bounce 1.5s infinite",
-                fontWeight: 900,
-                marginTop: STYLE.spacing.sm + "px",
-              }}
-            >
-              ↓
-            </div>
-
-            <a
-              href="https://sites.google.com/globe.com.ph/icx/answer-icx-now"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-hover"
-              style={{
-                marginTop: STYLE.spacing.lg + "px",
-                width: "min(100%, 200px)",
-                height: STYLE.buttonHeight,
-                background: STYLE.gradientPrimary,
-                borderRadius: STYLE.radius.button,
-                fontFamily: STYLE.font,
-                fontWeight: STYLE.fontWeight.body,
-                fontSize: STYLE.fontSize.body,
-                color: "#FFFFFF",
-                border: "none",
-                cursor: "pointer",
-                boxShadow: STYLE.shadowPrimary,
-                filter: "saturate(1.08) brightness(1.02)",
-                transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease",
-                display: "inline-flex",
+                display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                textDecoration: "none",
-              }}
-              onMouseDown={(e) => (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")}
-              onMouseUp={(e) => (e.currentTarget.style.transform = "")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
-            >
-              Done
-            </a>
-          </div>
-        ) : surveyStep === 1 ? (
-          /* "Wait! Before you go..." — same layout & textbox style as step 0 */
-          <div
-            className="survey-step-content wait-before-go"
-            style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}
-          >
-            <div
-              className="wait-item wait-item-1"
-              style={{
-                marginBottom: STYLE.spacing.lg + "px",
-                fontFamily: STYLE.font,
-                fontWeight: STYLE.fontWeight.title,
-                fontSize: STYLE.fontSize.title,
-                lineHeight: "1.3",
                 textAlign: "center",
-                color: STYLE.color.primary,
+                width: "100%",
+                flex: 1,
+                minHeight: 0,
               }}
             >
-              Wait! Before you go...
-            </div>
-            <div
-              className="wait-item wait-item-2"
-              style={{
-                fontFamily: STYLE.font,
-                fontSize: STYLE.fontSize.body,
-                color: STYLE.color.muted,
-                textAlign: "center",
-                marginBottom: STYLE.spacing.md + "px",
-              }}
-            >
-              Lock in your ID number and you're all set!
-            </div>
-            <div className="wait-item wait-item-3" style={{ width: "100%" }}>
-              <input
-                type="text"
-                value={employeeInfo}
-                onChange={(e) => setEmployeeInfo(e.target.value)}
-                placeholder="Employee ID or Employee Email"
-                style={{
-                  width: "100%",
-                  height: "clamp(100px, 14vh, 140px)",
-                  background: STYLE.color.inputBg,
-                  borderRadius: STYLE.radius.input,
-                  border: STYLE.inputBorder,
-                  padding: STYLE.spacing.md + "px",
-                  fontFamily: STYLE.font,
-                  fontSize: STYLE.fontSize.body,
-                  color: STYLE.color.primary,
-                  outline: "none",
-                  textAlign: "center",
-                  boxSizing: "border-box",
-                  boxShadow: STYLE.inputShadow,
-                }}
-              />
-            </div>
-
-            {submitError && (
-              <div
-                role="alert"
-                style={{
-                  marginTop: STYLE.spacing.sm + "px",
-                  width: "100%",
-                  color: STYLE.color.error,
-                  fontSize: STYLE.fontSize.small,
-                  fontFamily: STYLE.font,
-                  textAlign: "center",
-                }}
-              >
-                {submitError}
-              </div>
-            )}
-
-            <div
-              className="wait-item wait-item-4"
-              style={{
-                marginTop: STYLE.spacing.lg + "px",
-                display: "flex",
-                justifyContent: "flex-end",
-                gap: "clamp(10px, 2vw, 20px)",
-              }}
-            >
-              <button
-                type="button"
-                className="btn-hover"
-                onClick={() => setSurveyStep(0)}
-                style={{
-                  width: "min(100%, 190px)",
-                  height: STYLE.buttonHeight,
-                  background: STYLE.color.buttonSecondary,
-                  color: STYLE.color.muted,
-                  borderRadius: STYLE.radius.button,
-                  fontFamily: STYLE.font,
-                  fontWeight: STYLE.fontWeight.secondary,
-                  fontSize: STYLE.fontSize.body,
-                  border: "none",
-                  cursor: "pointer",
-                  transition: "background 0.2s, transform 0.12s ease",
-                }}
-                onMouseDown={(e) => (e.currentTarget.style.transform = "translateY(1px) scale(0.98)")}
-                onMouseUp={(e) => (e.currentTarget.style.transform = "")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
-              >
-                Back
-              </button>
-              <button
-                type="button"
-                className="btn-hover"
-                disabled={!canSubmitId || submitting}
-                onClick={async () => {
-                  if (!canSubmitId || submitting) return;
-                  setSubmitting(true);
-                  setSubmitError(null);
-                  try {
-                    const res = await fetch("/api/answers", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        seed,
-                        questionIndex,
-                        questionText: question,
-                        answerText: answer.trim(),
-                        employeeInfo: employeeInfo.trim(),
-                      }),
-                    });
-                    const data = await res.json().catch(() => ({}));
-                    if (res.ok) setSurveyStep(2);
-                    else setSubmitError(data?.error ?? "Failed to save. Please try again.");
-                  } catch (e) {
-                    setSubmitError("Network error. Please try again.");
-                  } finally {
-                    setSubmitting(false);
-                  }
-                }}
-                style={{
-                  width: "min(100%, 190px)",
-                  height: STYLE.buttonHeight,
-                  background: canSubmitId && !submitting ? STYLE.gradientPrimary : STYLE.color.disabled,
-                  borderRadius: STYLE.radius.button,
-                  fontFamily: STYLE.font,
-                  fontWeight: STYLE.fontWeight.body,
-                  fontSize: STYLE.fontSize.body,
-                  color: "#FFFFFF",
-                  border: "none",
-                  cursor: canSubmitId && !submitting ? "pointer" : "not-allowed",
-                  boxShadow: canSubmitId && !submitting ? STYLE.shadowPrimary : "none",
-                  filter: canSubmitId && !submitting ? "saturate(1.08) brightness(1.02)" : "none",
-                  transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease",
-                }}
-                onMouseDown={(e) => canSubmitId && !submitting && (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")}
-                onMouseUp={(e) => (e.currentTarget.style.transform = "")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
-              >
-                {submitting ? "..." : "Submit"}
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="survey-step-content" style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <div
-              style={{
-                marginBottom: STYLE.spacing.lg + "px",
-                fontFamily: STYLE.font,
-                fontWeight: STYLE.fontWeight.title,
-                fontSize: STYLE.fontSize.title,
-                lineHeight: "1.3",
-                textAlign: "center",
-                color: STYLE.color.primary,
-              }}
-            >
-              {displayText}
               <span
                 style={{
-                  borderRight: "2px solid " + STYLE.color.primary,
-                  marginLeft: "2px",
-                  animation: "blink 0.7s infinite",
-                }}
-              />
-            </div>
-
-            <div style={{ width: "100%" }}>
-              <textarea
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                placeholder="Type here..."
-                autoFocus
-                style={{
-                  width: "100%",
-                  height: "clamp(100px, 14vh, 140px)",
-                  background: STYLE.color.inputBg,
-                  borderRadius: STYLE.radius.input,
-                  border: STYLE.inputBorder,
-                  padding: STYLE.spacing.md + "px",
                   fontFamily: STYLE.font,
-                  fontSize: STYLE.fontSize.body,
+                  fontWeight: STYLE.fontWeight.title,
+                  fontSize: "clamp(32px, 5.5vw, 56px)",
+                  lineHeight: "1.2",
                   color: STYLE.color.primary,
-                  resize: "none",
-                  outline: "none",
-                  textAlign: "center",
-                  boxSizing: "border-box",
-                  boxShadow: STYLE.inputShadow,
-                }}
-              />
-            </div>
-
-            {submitError && surveyStep === 0 && (
-              <div
-                role="alert"
-                style={{
-                  marginTop: STYLE.spacing.sm + "px",
-                  width: "100%",
-                  color: STYLE.color.error,
-                  fontSize: STYLE.fontSize.small,
-                  fontFamily: STYLE.font,
-                  textAlign: "center",
                 }}
               >
-                {submitError}
-              </div>
-            )}
+                Click below!
+              </span>
 
-            <div
-              style={{
-                marginTop: STYLE.spacing.lg + "px",
-                display: "flex",
-                justifyContent: "flex-end",
-                gap: "clamp(10px, 2vw, 20px)",
-              }}
-            >
-              <button
-                type="button"
-                className="btn-hover"
-                onClick={() => {
-                  setAnswer("");
-                  setEmployeeInfo("");
-                }}
+              <div
                 style={{
-                  width: "min(100%, 190px)",
+                  fontSize: "clamp(28px, 4vw, 40px)",
+                  color: STYLE.color.primary,
+                  animation: "bounce 1.5s infinite",
+                  fontWeight: 900,
+                  marginTop: STYLE.spacing.sm + "px",
+                }}
+              >
+                ↓
+              </div>
+
+              <a
+                href="https://sites.google.com/globe.com.ph/icx/answer-icx-now"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-hover"
+                style={{
+                  marginTop: STYLE.spacing.lg + "px",
+                  width: "min(100%, 200px)",
                   height: STYLE.buttonHeight,
-                  background: clearActive ? STYLE.color.primary : STYLE.color.clearInactive,
+                  background: STYLE.gradientPrimary,
                   borderRadius: STYLE.radius.button,
                   fontFamily: STYLE.font,
                   fontWeight: STYLE.fontWeight.body,
@@ -524,51 +250,307 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                   color: "#FFFFFF",
                   border: "none",
                   cursor: "pointer",
-                  boxShadow: clearActive ? STYLE.shadowPrimary : "none",
-                  filter: clearActive ? "saturate(1.12) brightness(1.02)" : "none",
-                  transition: "transform 0.12s ease, box-shadow 0.18s ease, filter 0.18s ease, background 0.18s ease",
+                  boxShadow: STYLE.shadowPrimary,
+                  filter: "saturate(1.08) brightness(1.02)",
+                  transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textDecoration: "none",
                 }}
                 onMouseDown={(e) => (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")}
                 onMouseUp={(e) => (e.currentTarget.style.transform = "")}
                 onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
               >
-                Clear
-              </button>
-
-              <button
-                type="button"
-                className="btn-hover"
-                onClick={async () => {
-                  if (!canSubmitMood || submitting) return;
-                  setSubmitting(false);
-                  setSubmitError(null);
-                  setSurveyStep(1);
-                }}
-                disabled={!canSubmitMood}
-                style={{
-                  width: "min(100%, 190px)",
-                  height: STYLE.buttonHeight,
-                  background: canSubmitMood ? STYLE.gradientPrimary : STYLE.color.disabled,
-                  borderRadius: STYLE.radius.button,
-                  fontFamily: STYLE.font,
-                  fontWeight: STYLE.fontWeight.body,
-                  fontSize: STYLE.fontSize.body,
-                  color: "#FFFFFF",
-                  border: "none",
-                  cursor: canSubmitMood ? "pointer" : "not-allowed",
-                  boxShadow: canSubmitMood ? STYLE.shadowPrimary : "none",
-                  filter: canSubmitMood ? "saturate(1.08) brightness(1.02)" : "none",
-                  transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease, filter 0.18s ease",
-                }}
-                onMouseDown={(e) => canSubmitMood && (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")}
-                onMouseUp={(e) => (e.currentTarget.style.transform = "")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
-              >
-                Submit
-              </button>
+                Done
+              </a>
             </div>
-          </div>
-        )}
+          ) : surveyStep === 1 ? (
+            <div
+              className="survey-step-content"
+              style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}
+            >
+              <div
+                style={{
+                  marginBottom: STYLE.spacing.lg + "px",
+                  fontFamily: STYLE.font,
+                  fontWeight: STYLE.fontWeight.title,
+                  fontSize: STYLE.fontSize.title,
+                  lineHeight: "1.3",
+                  textAlign: "center",
+                  color: STYLE.color.primary,
+                }}
+              >
+                Lock in your ID number and you're all set!
+              </div>
+
+              <div style={{ width: "100%" }}>
+                <input
+                  type="text"
+                  value={employeeInfo}
+                  onChange={(e) => setEmployeeInfo(e.target.value)}
+                  placeholder="Employee ID or Employee Email"
+                  style={{
+                    width: "100%",
+                    height: "clamp(100px, 14vh, 140px)",
+                    background: STYLE.color.inputBg,
+                    borderRadius: STYLE.radius.input,
+                    border: STYLE.inputBorder,
+                    padding: STYLE.spacing.md + "px",
+                    fontFamily: STYLE.font,
+                    fontSize: STYLE.fontSize.body,
+                    color: STYLE.color.primary,
+                    outline: "none",
+                    textAlign: "center",
+                    boxSizing: "border-box",
+                    boxShadow: STYLE.inputShadow,
+                  }}
+                />
+              </div>
+
+              {submitError && (
+                <div
+                  role="alert"
+                  style={{
+                    marginTop: STYLE.spacing.sm + "px",
+                    width: "100%",
+                    color: STYLE.color.error,
+                    fontSize: STYLE.fontSize.small,
+                    fontFamily: STYLE.font,
+                    textAlign: "center",
+                  }}
+                >
+                  {submitError}
+                </div>
+              )}
+
+              <div
+                style={{
+                  marginTop: STYLE.spacing.lg + "px",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: "clamp(10px, 2vw, 20px)",
+                }}
+              >
+                <button
+                  type="button"
+                  className="btn-hover"
+                  onClick={() => setSurveyStep(0)}
+                  style={{
+                    width: "min(100%, 190px)",
+                    height: STYLE.buttonHeight,
+                    background: STYLE.color.buttonSecondary,
+                    color: STYLE.color.muted,
+                    borderRadius: STYLE.radius.button,
+                    fontFamily: STYLE.font,
+                    fontWeight: STYLE.fontWeight.secondary,
+                    fontSize: STYLE.fontSize.body,
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "background 0.2s, transform 0.12s ease",
+                  }}
+                  onMouseDown={(e) => (e.currentTarget.style.transform = "translateY(1px) scale(0.98)")}
+                  onMouseUp={(e) => (e.currentTarget.style.transform = "")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
+                >
+                  Back
+                </button>
+
+                <button
+                  type="button"
+                  className="btn-hover"
+                  disabled={!canSubmitId || submitting}
+                  onClick={async () => {
+                    if (!canSubmitId || submitting) return;
+                    setSubmitting(true);
+                    setSubmitError(null);
+                    try {
+                      const res = await fetch("/api/answers", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          seed,
+                          questionIndex,
+                          questionText: question,
+                          answerText: answer.trim(),
+                          employeeInfo: employeeInfo.trim(),
+                        }),
+                      });
+                      const data = await res.json().catch(() => ({}));
+                      if (res.ok) setSurveyStep(2);
+                      else setSubmitError(data?.error ?? "Failed to save. Please try again.");
+                    } catch (e) {
+                      setSubmitError("Network error. Please try again.");
+                    } finally {
+                      setSubmitting(false);
+                    }
+                  }}
+                  style={{
+                    width: "min(100%, 190px)",
+                    height: STYLE.buttonHeight,
+                    background: canSubmitId && !submitting ? STYLE.gradientPrimary : STYLE.color.disabled,
+                    borderRadius: STYLE.radius.button,
+                    fontFamily: STYLE.font,
+                    fontWeight: STYLE.fontWeight.body,
+                    fontSize: STYLE.fontSize.body,
+                    color: "#FFFFFF",
+                    border: "none",
+                    cursor: canSubmitId && !submitting ? "pointer" : "not-allowed",
+                    boxShadow: canSubmitId && !submitting ? STYLE.shadowPrimary : "none",
+                    filter: canSubmitId && !submitting ? "saturate(1.08) brightness(1.02)" : "none",
+                    transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease",
+                  }}
+                  onMouseDown={(e) =>
+                    canSubmitId &&
+                    !submitting &&
+                    (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")
+                  }
+                  onMouseUp={(e) => (e.currentTarget.style.transform = "")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
+                >
+                  {submitting ? "..." : "Submit"}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div
+              className="survey-step-content"
+              style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}
+            >
+              <div
+                style={{
+                  marginBottom: STYLE.spacing.lg + "px",
+                  fontFamily: STYLE.font,
+                  fontWeight: STYLE.fontWeight.title,
+                  fontSize: STYLE.fontSize.title,
+                  lineHeight: "1.3",
+                  textAlign: "center",
+                  color: STYLE.color.primary,
+                }}
+              >
+                {displayText}
+                <span
+                  style={{
+                    borderRight: "2px solid " + STYLE.color.primary,
+                    marginLeft: "2px",
+                    animation: "blink 0.7s infinite",
+                  }}
+                />
+              </div>
+
+              <div style={{ width: "100%" }}>
+                <textarea
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  placeholder="Type here..."
+                  autoFocus
+                  style={{
+                    width: "100%",
+                    height: "clamp(100px, 14vh, 140px)",
+                    background: STYLE.color.inputBg,
+                    borderRadius: STYLE.radius.input,
+                    border: STYLE.inputBorder,
+                    padding: STYLE.spacing.md + "px",
+                    fontFamily: STYLE.font,
+                    fontSize: STYLE.fontSize.body,
+                    color: STYLE.color.primary,
+                    resize: "none",
+                    outline: "none",
+                    textAlign: "center",
+                    boxSizing: "border-box",
+                    boxShadow: STYLE.inputShadow,
+                  }}
+                />
+              </div>
+
+              {submitError && surveyStep === 0 && (
+                <div
+                  role="alert"
+                  style={{
+                    marginTop: STYLE.spacing.sm + "px",
+                    width: "100%",
+                    color: STYLE.color.error,
+                    fontSize: STYLE.fontSize.small,
+                    fontFamily: STYLE.font,
+                    textAlign: "center",
+                  }}
+                >
+                  {submitError}
+                </div>
+              )}
+
+              <div
+                style={{
+                  marginTop: STYLE.spacing.lg + "px",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: "clamp(10px, 2vw, 20px)",
+                }}
+              >
+                <button
+                  type="button"
+                  className="btn-hover"
+                  onClick={() => {
+                    setAnswer("");
+                    setEmployeeInfo("");
+                  }}
+                  style={{
+                    width: "min(100%, 190px)",
+                    height: STYLE.buttonHeight,
+                    background: clearActive ? STYLE.color.primary : STYLE.color.clearInactive,
+                    borderRadius: STYLE.radius.button,
+                    fontFamily: STYLE.font,
+                    fontWeight: STYLE.fontWeight.body,
+                    fontSize: STYLE.fontSize.body,
+                    color: "#FFFFFF",
+                    border: "none",
+                    cursor: "pointer",
+                    boxShadow: clearActive ? STYLE.shadowPrimary : "none",
+                    filter: clearActive ? "saturate(1.12) brightness(1.02)" : "none",
+                    transition:
+                      "transform 0.12s ease, box-shadow 0.18s ease, filter 0.18s ease, background 0.18s ease",
+                  }}
+                  onMouseDown={(e) => (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")}
+                  onMouseUp={(e) => (e.currentTarget.style.transform = "")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
+                >
+                  Clear
+                </button>
+
+                <button
+                  type="button"
+                  className="btn-hover"
+                  onClick={async () => {
+                    if (!canSubmitMood || submitting) return;
+                    setSubmitting(false);
+                    setSubmitError(null);
+                    setSurveyStep(1);
+                  }}
+                  disabled={!canSubmitMood}
+                  style={{
+                    width: "min(100%, 190px)",
+                    height: STYLE.buttonHeight,
+                    background: canSubmitMood ? STYLE.gradientPrimary : STYLE.color.disabled,
+                    borderRadius: STYLE.radius.button,
+                    fontFamily: STYLE.font,
+                    fontWeight: STYLE.fontWeight.body,
+                    fontSize: STYLE.fontSize.body,
+                    color: "#FFFFFF",
+                    border: "none",
+                    cursor: canSubmitMood ? "pointer" : "not-allowed",
+                    boxShadow: canSubmitMood ? STYLE.shadowPrimary : "none",
+                    filter: canSubmitMood ? "saturate(1.08) brightness(1.02)" : "none",
+                    transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease, filter 0.18s ease",
+                  }}
+                  onMouseDown={(e) => canSubmitMood && (e.currentTarget.style.transform = "translateY(1px) scale(0.99)")}
+                  onMouseUp={(e) => (e.currentTarget.style.transform = "")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
