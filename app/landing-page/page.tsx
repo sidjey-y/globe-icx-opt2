@@ -289,7 +289,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                   type="text"
                   value={employeeInfo}
                   onChange={(e) => setEmployeeInfo(e.target.value)}
-                  placeholder="Employee ID or Employee Email"
+                  placeholder="Employee ID"
                   style={{
                     width: "100%",
                     height: "clamp(100px, 14vh, 140px)",
