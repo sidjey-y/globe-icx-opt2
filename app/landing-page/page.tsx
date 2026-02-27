@@ -272,18 +272,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 color: STYLE.color.primary,
               }}
             >
-              Wait! Before you go...
-            </div>
-            <div
-              className="wait-item wait-item-2"
-              style={{
-                fontFamily: STYLE.font,
-                fontSize: STYLE.fontSize.body,
-                color: STYLE.color.muted,
-                textAlign: "center",
-                marginBottom: STYLE.spacing.md + "px",
-              }}
-            >
               Lock in your ID number and you're all set!
             </div>
             <div className="wait-item wait-item-3" style={{ width: "100%" }}>
