@@ -284,7 +284,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                   const value = e.target.value;
                   setEmployeeInfo(value);
                   if (value && !/^\d*$/.test(value)) {
-                    setSubmitError("Employee ID Number must contain digits only.");
+                    setSubmitError("Employee ID must contain numbers only.");
                   } else {
                     setSubmitError(null);
                   }
