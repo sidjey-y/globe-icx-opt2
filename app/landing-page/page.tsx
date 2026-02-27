@@ -90,7 +90,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
   }, [question, mounted]);
 
   const canSubmitMood = !!seed && answer.trim().length > 0 && answer.trim().length <= 200;
-  const canSubmitId = employeeInfo.trim().length > 0;
+  const canSubmitId = /^\d+$/.test(employeeInfo.trim());
 
   if (!mounted) return null;
 
@@ -222,30 +222,6 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               minHeight: 0,
             }}
           >
-            <span
-              style={{
-                fontFamily: STYLE.font,
-                fontWeight: STYLE.fontWeight.title,
-                fontSize: "clamp(32px, 5.5vw, 56px)",
-                lineHeight: "1.2",
-                color: STYLE.color.primary,
-              }}
-            >
-              Answer iCX Now!
-            </span>
-
-            <div
-              style={{
-                fontSize: "clamp(28px, 4vw, 40px)",
-                color: STYLE.color.primary,
-                animation: "bounce 1.5s infinite",
-                fontWeight: 900,
-                marginTop: STYLE.spacing.sm + "px",
-              }}
-            >
-              ↓
-            </div>
-
             <a
               href="https://sites.google.com/globe.com.ph/icx/answer-icx-now"
               target="_blank"
@@ -253,17 +229,17 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               className="btn-hover"
               style={{
                 marginTop: STYLE.spacing.lg + "px",
-                width: "min(100%, 200px)",
-                height: STYLE.buttonHeight,
-                background: STYLE.gradientPrimary,
-                borderRadius: STYLE.radius.button,
+                width: "min(100%, 640px)", // overall width (like reference)
+                height: "120px",            // overall height
+                background: "linear-gradient(90deg, #4A4EDB 0%, #B13BFF 100%)",
+                borderRadius: "20px",      // curve of the ends
                 fontFamily: STYLE.font,
                 fontWeight: STYLE.fontWeight.body,
-                fontSize: STYLE.fontSize.body,
+                fontSize: "clamp(28px, 3.6vw, 36px)", // text size
                 color: "#FFFFFF",
-                border: "none",
+                border: "2px solid rgba(255, 255, 255, 0.9)", // outline
                 cursor: "pointer",
-                boxShadow: STYLE.shadowPrimary,
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.30)", // soft outer glow like reference
                 filter: "saturate(1.08) brightness(1.02)",
                 transition: "opacity 0.2s, transform 0.12s ease, box-shadow 0.18s ease",
                 display: "inline-flex",
@@ -275,7 +251,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
               onMouseUp={(e) => (e.currentTarget.style.transform = "")}
               onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
             >
-              Done
+              Answer iCX Now!
             </a>
           </div>
         ) : surveyStep === 1 ? (
@@ -313,9 +289,19 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
             <div className="wait-item wait-item-3" style={{ width: "100%" }}>
               <input
                 type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 value={employeeInfo}
-                onChange={(e) => setEmployeeInfo(e.target.value)}
-                placeholder="Employee ID or Employee Email"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setEmployeeInfo(value);
+                  if (value && !/^\d*$/.test(value)) {
+                    setSubmitError("Employee ID Number must contain digits only.");
+                  } else {
+                    setSubmitError(null);
+                  }
+                }}
+                placeholder="Employee ID Number"
                 style={{
                   width: "100%",
                   height: "clamp(100px, 14vh, 140px)",
@@ -564,7 +550,7 @@ export default function LandingSurveyBlock({ onContinue }: LandingSurveyBlockPro
                 onMouseUp={(e) => (e.currentTarget.style.transform = "")}
                 onMouseLeave={(e) => (e.currentTarget.style.transform = "")}
               >
-                Submit
+                Next
               </button>
             </div>
           </div>
